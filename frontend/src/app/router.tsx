@@ -1,18 +1,43 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { AppShell } from './layout/AppShell'
+import { AdminAnalyticsPage } from '@/pages/admin-analytics/page'
+import { AdminDatasetsPage } from '@/pages/admin-datasets/page'
+import { AdminErrorsPage } from '@/pages/admin-errors/page'
+import { AdminGradingPage } from '@/pages/admin-grading/page'
+import { AdminLabEditPage } from '@/pages/admin-lab-edit/page'
+import { AdminLabsPage } from '@/pages/admin-labs/page'
+import { AdminLoginPage } from '@/pages/admin-login/page'
+import { AdminNotebooksPage } from '@/pages/admin-notebooks/page'
+import { AdminPolicyPage } from '@/pages/admin-policy/page'
+import { AdminReleasesPage } from '@/pages/admin-releases/page'
 import { AdminPage } from '@/pages/admin/page'
 import { DashboardPage } from '@/pages/dashboard/page'
+import { DiagnosticPage } from '@/pages/diagnostic/page'
+import { HistoryPage } from '@/pages/history/page'
 import { HomePage } from '@/pages/home/page'
+import { LabDetailPage } from '@/pages/lab-detail/page'
 import { LabsPage } from '@/pages/labs/page'
+import { MistakeDetailPage } from '@/pages/mistake-detail/page'
 import { MistakesPage } from '@/pages/mistakes/page'
-import { MockPage } from '@/pages/mock/page'
+import { MockConsentPage } from '@/pages/mock-consent/page'
 import { MockResultPage } from '@/pages/mock-result/page'
+import { MockSetupPage } from '@/pages/mock-setup/page'
+import { MockPage } from '@/pages/mock/page'
+import { OnboardingPolicyPage } from '@/pages/onboarding-policy/page'
+import { OnboardingProfilePage } from '@/pages/onboarding-profile/page'
+import { OnboardingSchedulePage } from '@/pages/onboarding-schedule/page'
 import { PlaceholderPage } from '@/pages/placeholder/page'
 import { PlanPage } from '@/pages/plan/page'
+import { PlanWeeklyPage } from '@/pages/plan-weekly/page'
+import { ReferencePolicyPage } from '@/pages/reference-policy/page'
+import { ReferenceViewerPage } from '@/pages/reference-viewer/page'
 import { ReferencePage } from '@/pages/reference/page'
 import { ReviewPage } from '@/pages/review/page'
 import { SessionPage } from '@/pages/session/page'
 import { SessionStartPage } from '@/pages/session-start/page'
+import { SettingsPolicyPage } from '@/pages/settings-policy/page'
+import { SettingsProfilePage } from '@/pages/settings-profile/page'
+import { SettingsSchedulePage } from '@/pages/settings-schedule/page'
 import { SettingsPage } from '@/pages/settings/page'
 
 export function AppRouter() {
@@ -23,54 +48,58 @@ export function AppRouter() {
           <Route path="/" element={<Navigate to="/aice" replace />} />
           <Route path="/aice" element={<HomePage />} />
 
-          <Route path="/aice/onboarding/profile" element={<PlaceholderPage title="온보딩 1/3 - 시험 프로필" />} />
-          <Route path="/aice/onboarding/schedule" element={<PlaceholderPage title="온보딩 2/3 - 가용시간/일정" />} />
-          <Route path="/aice/onboarding/policy" element={<PlaceholderPage title="온보딩 3/3 - 정책/모드" />} />
-          <Route path="/aice/diagnostic" element={<PlaceholderPage title="초기 진단" />} />
+          <Route path="/aice/onboarding/profile" element={<OnboardingProfilePage />} />
+          <Route path="/aice/onboarding/schedule" element={<OnboardingSchedulePage />} />
+          <Route path="/aice/onboarding/policy" element={<OnboardingPolicyPage />} />
+          <Route path="/aice/diagnostic" element={<DiagnosticPage />} />
 
           <Route path="/aice/plan" element={<PlanPage />} />
           <Route path="/aice/plan/day/:date" element={<PlanPage />} />
-          <Route path="/aice/plan/weekly" element={<PlaceholderPage title="주간 리포트" />} />
+          <Route path="/aice/plan/weekly" element={<PlanWeeklyPage />} />
 
           <Route path="/aice/labs" element={<LabsPage />} />
           <Route path="/aice/labs/list" element={<LabsPage />} />
-          <Route path="/aice/labs/:labId" element={<PlaceholderPage title="Lab 상세" />} />
+          <Route path="/aice/labs/:labId" element={<LabDetailPage />} />
           <Route path="/aice/labs/:labId/start" element={<SessionStartPage />} />
 
           <Route path="/aice/session/:sessionId" element={<SessionPage />} />
           <Route path="/aice/session/:sessionId/review" element={<ReviewPage />} />
 
           <Route path="/aice/mock" element={<MockPage />} />
-          <Route path="/aice/mock/setup" element={<SessionStartPage />} />
-          <Route path="/aice/mock/consent" element={<PlaceholderPage title="모의 규칙 동의" />} />
+          <Route path="/aice/mock/setup" element={<MockSetupPage />} />
+          <Route path="/aice/mock/consent" element={<MockConsentPage />} />
           <Route path="/aice/mock/session/:sessionId" element={<SessionPage />} />
           <Route path="/aice/mock/session/:sessionId/result" element={<MockResultPage />} />
 
           <Route path="/aice/mistakes" element={<MistakesPage />} />
-          <Route path="/aice/mistakes/:errorCode" element={<PlaceholderPage title="실수 패턴 상세" />} />
+          <Route path="/aice/mistakes/:errorCode" element={<MistakeDetailPage />} />
 
           <Route path="/aice/reference" element={<ReferencePage />} />
-          <Route path="/aice/reference/:docId" element={<PlaceholderPage title="문서 뷰어" />} />
-          <Route path="/aice/reference/policy" element={<PlaceholderPage title="정책별 허용범위" />} />
+          <Route path="/aice/reference/:docId" element={<ReferenceViewerPage />} />
+          <Route path="/aice/reference/policy" element={<ReferencePolicyPage />} />
 
           <Route path="/aice/dashboard" element={<DashboardPage />} />
-          <Route path="/aice/dashboard/history" element={<PlaceholderPage title="학습 히스토리" />} />
+          <Route path="/aice/dashboard/history" element={<HistoryPage />} />
           <Route path="/aice/settings" element={<SettingsPage />} />
-          <Route path="/aice/settings/profile" element={<PlaceholderPage title="설정-프로필" />} />
-          <Route path="/aice/settings/schedule" element={<PlaceholderPage title="설정-일정" />} />
-          <Route path="/aice/settings/policy" element={<PlaceholderPage title="설정-정책" />} />
+          <Route path="/aice/settings/profile" element={<SettingsProfilePage />} />
+          <Route path="/aice/settings/schedule" element={<SettingsSchedulePage />} />
+          <Route path="/aice/settings/policy" element={<SettingsPolicyPage />} />
 
           <Route path="/admin" element={<AdminPage />} />
-          <Route path="/admin/login" element={<PlaceholderPage title="관리자 로그인" />} />
-          <Route path="/admin/labs" element={<PlaceholderPage title="관리자 Labs 목록" />} />
-          <Route path="/admin/labs/:labId" element={<PlaceholderPage title="관리자 Lab 편집" />} />
-          <Route path="/admin/notebooks" element={<PlaceholderPage title="Notebook 템플릿" />} />
-          <Route path="/admin/datasets" element={<PlaceholderPage title="Dataset 관리" />} />
-          <Route path="/admin/grading" element={<PlaceholderPage title="GradingSpec 관리" />} />
-          <Route path="/admin/errors" element={<PlaceholderPage title="오류코드 관리" />} />
-          <Route path="/admin/policy" element={<PlaceholderPage title="정책 관리" />} />
-          <Route path="/admin/releases" element={<PlaceholderPage title="배포/버전" />} />
-          <Route path="/admin/analytics" element={<PlaceholderPage title="운영 분석" />} />
+          <Route path="/admin/login" element={<AdminLoginPage />} />
+          <Route path="/admin/labs" element={<AdminLabsPage />} />
+          <Route path="/admin/labs/:labId" element={<AdminLabEditPage />} />
+          <Route path="/admin/notebooks" element={<AdminNotebooksPage />} />
+          <Route path="/admin/datasets" element={<AdminDatasetsPage />} />
+          <Route path="/admin/grading" element={<AdminGradingPage />} />
+          <Route path="/admin/errors" element={<AdminErrorsPage />} />
+          <Route path="/admin/policy" element={<AdminPolicyPage />} />
+          <Route path="/admin/releases" element={<AdminReleasesPage />} />
+          <Route path="/admin/analytics" element={<AdminAnalyticsPage />} />
+
+          <Route path="/login" element={<PlaceholderPage title="로그인" />} />
+          <Route path="/signup" element={<PlaceholderPage title="회원가입" />} />
+          <Route path="/reset-password" element={<PlaceholderPage title="비밀번호 재설정" />} />
 
           <Route path="*" element={<Navigate to="/aice" replace />} />
         </Routes>

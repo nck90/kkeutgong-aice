@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { Surface } from '@/widgets/cards/surface'
 
 export function DashboardPage() {
@@ -9,6 +10,9 @@ export function DashboardPage() {
         <div className="rounded border p-2 text-sm">Lab PASS율: 71%</div>
         <div className="rounded border p-2 text-sm">Mock 평균: 74</div>
       </div>
+      <Link className="mt-3 inline-block text-sm underline" to="/aice/dashboard/history">
+        학습 히스토리 보기
+      </Link>
     </Surface>
   )
 }

@@ -12,11 +12,13 @@
 - Query/mutation 흐름 정리
 
 ## Sprint 4 (완료)
-- UX 컴포넌트 보강(PolicyBlockedDialog)
-- 관리자/학습자 라우트 정합성 유지
-- 문서화(route-map, architecture, progress)
+- IA 플레이스홀더 대거 실구현
+- 온보딩(프로필/일정/정책), 진단, 플랜 주간, Lab 상세 구현
+- 모의 설정/동의, 실수 상세, 문서 뷰어/정책, 히스토리, 설정 상세 구현
+- 관리자 로그인/Labs/편집/정책/분석 등 운영 페이지 확장
 
 ## Sprint 5 (완료)
-- 테스트 확장: schema/api/timer
+- 테스트 확장: schema/api/timer + page tests
+- E2E 시나리오 추가(learner/session flow)
 - lint/test/build 파이프라인 통과
 - 배포 준비 가능한 프론트 데모 상태 확보

@@ -1,4 +1,4 @@
-import { labs, planTasks, sessionStepsSeed } from '@/shared/mocks/data'
+import { adminLabs, historyEntries, labs, mistakes, planTasks, policyRules, referenceDocs, sessionStepsSeed } from '@/shared/mocks/data'
 import type { Mode, Policy, SessionDetail, SessionReview, SubmitResult } from '@/shared/types/domain'
 import type { SessionStartInput } from './client'
 
@@ -39,10 +39,60 @@ export const mockApi = {
     return labs
   },
 
+  async getLabById(labId: string) {
+    await delay(60)
+    return labs.find((lab) => lab.id === labId) ?? null
+  },
+
   async getPlanTasks(date?: string) {
     await delay(80)
     if (!date) return planTasks
     return planTasks.filter((task) => task.date === date)
+  },
+
+  async getWeeklyPlanSummary() {
+    await delay(80)
+    return {
+      adherence: 68,
+      passRate: 71,
+      topError: 'ANSWER_VAR_MISSING',
+      recommendations: ['전처리 비중 증가', '모의 1회 추가', '시각화 교정 추가'],
+    }
+  },
+
+  async getMistakes() {
+    await delay(70)
+    return mistakes
+  },
+
+  async getMistakeByCode(code: string) {
+    await delay(60)
+    return mistakes.find((item) => item.code === code) ?? null
+  },
+
+  async getReferenceDocs() {
+    await delay(70)
+    return referenceDocs
+  },
+
+  async getReferenceDocById(docId: string) {
+    await delay(60)
+    return referenceDocs.find((doc) => doc.id === docId) ?? null
+  },
+
+  async getHistory() {
+    await delay(70)
+    return historyEntries
+  },
+
+  async getAdminLabs() {
+    await delay(80)
+    return adminLabs
+  },
+
+  async getPolicyRules() {
+    await delay(80)
+    return policyRules
   },
 
   async startSession(input: SessionStartInput) {

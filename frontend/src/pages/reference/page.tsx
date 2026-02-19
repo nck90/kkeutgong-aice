@@ -1,18 +1,20 @@
+import { useQuery } from '@tanstack/react-query'
+import { Link } from 'react-router-dom'
+import { apiClient } from '@/shared/api/client'
 import { Surface } from '@/widgets/cards/surface'
 
-const docs = [
-  ['pd-merge', 'Pandas merge/join', '허용'],
-  ['skl-split', 'sklearn train_test_split', '허용'],
-  ['external-blog', '임의 외부 블로그', '차단'],
-] as const
-
 export function ReferencePage() {
+  const { data = [] } = useQuery({ queryKey: ['reference-docs'], queryFn: () => apiClient.getReferenceDocs() })
+
   return (
     <Surface title="허용문서 목록">
       <ul className="space-y-2 text-sm">
-        {docs.map(([id, title, allowed]) => (
-          <li className="rounded border border-stone-200 bg-stone-50 p-2" key={id}>
-            {title} · {allowed}
+        {data.map((doc) => (
+          <li className="rounded border border-stone-200 bg-stone-50 p-2" key={doc.id}>
+            {doc.title} · {doc.allowed ? '허용' : '차단'} ·{' '}
+            <Link className="underline" to={`/aice/reference/${doc.id}`}>
+              열기
+            </Link>
           </li>
         ))}
       </ul>

@@ -27,6 +27,12 @@ export function HomePage() {
         <Link className="rounded-md border border-stone-300 bg-white px-3 py-2 text-sm" to="/aice/labs">
           Labs 보기
         </Link>
+        <Link className="rounded-md border border-stone-300 bg-white px-3 py-2 text-sm" to="/aice/onboarding/profile">
+          온보딩 시작
+        </Link>
+        <Link className="rounded-md border border-stone-300 bg-white px-3 py-2 text-sm" to="/aice/diagnostic">
+          초기 진단
+        </Link>
       </div>
     </Surface>
   )

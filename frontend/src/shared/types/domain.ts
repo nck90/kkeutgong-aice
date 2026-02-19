@@ -18,6 +18,8 @@ export type Lab = {
   steps: number
   time: number
   examMode: boolean
+  difficulty: 'EASY' | 'MID' | 'HARD'
+  tags: string[]
 }
 
 export type PlanTask = {
@@ -49,4 +51,43 @@ export type SessionReview = {
   failCount: number
   topErrorCode: string
   stepTimeline: Array<{ stepNo: number; state: SessionStepState; elapsedSec: number }>
+}
+
+export type MistakeItem = {
+  code: string
+  severity: 'LOW' | 'MEDIUM' | 'HIGH'
+  count14d: number
+  description: string
+}
+
+export type ReferenceDoc = {
+  id: string
+  title: string
+  category: string
+  allowed: boolean
+}
+
+export type HistoryEntry = {
+  id: string
+  date: string
+  mode: Mode
+  result: 'PASS' | 'PARTIAL' | 'FAIL'
+  errorCode?: string
+}
+
+export type AdminLabSummary = {
+  id: string
+  title: string
+  status: 'DRAFT' | 'PUBLISHED'
+  version: string
+  updatedAt: string
+}
+
+export type PolicyRule = {
+  id: string
+  mode: Mode
+  allowReference: Policy
+  hintLevel: 'FULL' | 'LIMITED' | 'NONE'
+  retryLimit: number
+  timeLimitMin: number
 }
