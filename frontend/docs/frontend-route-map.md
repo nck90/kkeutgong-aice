@@ -1,0 +1,46 @@
+# Frontend Route Map (Sprint 1)
+
+## Learner
+- /aice
+- /aice/onboarding/profile
+- /aice/onboarding/schedule
+- /aice/onboarding/policy
+- /aice/diagnostic
+- /aice/plan
+- /aice/plan/day/:date
+- /aice/plan/weekly
+- /aice/labs
+- /aice/labs/list
+- /aice/labs/:labId
+- /aice/labs/:labId/start
+- /aice/session/:sessionId
+- /aice/session/:sessionId/review
+- /aice/mock
+- /aice/mock/setup
+- /aice/mock/consent
+- /aice/mock/session/:sessionId
+- /aice/mock/session/:sessionId/result
+- /aice/mistakes
+- /aice/mistakes/:errorCode
+- /aice/reference
+- /aice/reference/:docId
+- /aice/reference/policy
+- /aice/dashboard
+- /aice/dashboard/history
+- /aice/settings
+- /aice/settings/profile
+- /aice/settings/schedule
+- /aice/settings/policy
+
+## Admin
+- /admin
+- /admin/login
+- /admin/labs
+- /admin/labs/:labId
+- /admin/notebooks
+- /admin/datasets
+- /admin/grading
+- /admin/errors
+- /admin/policy
+- /admin/releases
+- /admin/analytics
