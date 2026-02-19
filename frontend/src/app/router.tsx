@@ -6,11 +6,13 @@ import { HomePage } from '@/pages/home/page'
 import { LabsPage } from '@/pages/labs/page'
 import { MistakesPage } from '@/pages/mistakes/page'
 import { MockPage } from '@/pages/mock/page'
+import { MockResultPage } from '@/pages/mock-result/page'
 import { PlaceholderPage } from '@/pages/placeholder/page'
 import { PlanPage } from '@/pages/plan/page'
 import { ReferencePage } from '@/pages/reference/page'
 import { ReviewPage } from '@/pages/review/page'
 import { SessionPage } from '@/pages/session/page'
+import { SessionStartPage } from '@/pages/session-start/page'
 import { SettingsPage } from '@/pages/settings/page'
 
 export function AppRouter() {
@@ -33,16 +35,16 @@ export function AppRouter() {
           <Route path="/aice/labs" element={<LabsPage />} />
           <Route path="/aice/labs/list" element={<LabsPage />} />
           <Route path="/aice/labs/:labId" element={<PlaceholderPage title="Lab 상세" />} />
-          <Route path="/aice/labs/:labId/start" element={<PlaceholderPage title="세션 시작/환경체크" />} />
+          <Route path="/aice/labs/:labId/start" element={<SessionStartPage />} />
 
           <Route path="/aice/session/:sessionId" element={<SessionPage />} />
           <Route path="/aice/session/:sessionId/review" element={<ReviewPage />} />
 
           <Route path="/aice/mock" element={<MockPage />} />
-          <Route path="/aice/mock/setup" element={<PlaceholderPage title="모의시험 설정" />} />
+          <Route path="/aice/mock/setup" element={<SessionStartPage />} />
           <Route path="/aice/mock/consent" element={<PlaceholderPage title="모의 규칙 동의" />} />
           <Route path="/aice/mock/session/:sessionId" element={<SessionPage />} />
-          <Route path="/aice/mock/session/:sessionId/result" element={<PlaceholderPage title="모의 결과" />} />
+          <Route path="/aice/mock/session/:sessionId/result" element={<MockResultPage />} />
 
           <Route path="/aice/mistakes" element={<MistakesPage />} />
           <Route path="/aice/mistakes/:errorCode" element={<PlaceholderPage title="실수 패턴 상세" />} />

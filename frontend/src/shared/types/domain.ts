@@ -1,5 +1,7 @@
 export type Mode = 'Practice' | 'Practice+' | 'Mock'
 
+export type Policy = 'OPEN' | 'ALLOWLIST_ONLY' | 'RESTRICTED'
+
 export type SessionStepState = 'LOCKED' | 'OPEN' | 'PASS' | 'FAIL'
 
 export type SessionStep = {
@@ -25,4 +27,26 @@ export type PlanTask = {
   title: string
   estMinutes: number
   status: 'TODO' | 'DONE' | 'SKIPPED'
+}
+
+export type SessionDetail = {
+  sessionId: string
+  mode: Mode
+  policy: Policy
+  steps: SessionStep[]
+  timerSec: number
+}
+
+export type SubmitResult = {
+  result: 'PASS' | 'FAIL' | 'PARTIAL'
+  errorCodes: string[]
+  nextSteps: SessionStep[]
+}
+
+export type SessionReview = {
+  sessionId: string
+  passCount: number
+  failCount: number
+  topErrorCode: string
+  stepTimeline: Array<{ stepNo: number; state: SessionStepState; elapsedSec: number }>
 }
