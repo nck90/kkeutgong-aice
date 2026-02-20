@@ -1,13 +1,8 @@
-import { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import {
     ChevronRight,
     CheckCircle2,
-    Circle,
     PlayCircle,
-    BookOpen,
-    Clock,
-    Award,
     Star,
     Share2,
     AlertCircle

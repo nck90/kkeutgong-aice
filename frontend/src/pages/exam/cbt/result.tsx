@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { CheckCircle2, XCircle, ArrowRight, RotateCcw, Home } from 'lucide-react'
+import { CheckCircle2, RotateCcw, Home, ArrowRight } from 'lucide-react'
 import { Button } from '@/shared/ui/button'
 import { cn } from '@/shared/lib/utils'
 

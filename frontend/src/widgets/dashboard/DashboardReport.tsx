@@ -10,7 +10,6 @@ import {
     BookOpen
 } from 'lucide-react'
 import { Button } from '@/shared/ui/button'
-import { cn } from '@/shared/lib/utils'
 import { type Track } from '@/shared/data/tracks'
 import { CurriculumRoadmap } from './CurriculumRoadmap'
 import { useNavigate } from 'react-router-dom'
