@@ -13,6 +13,7 @@ import type {
   SubmitResult,
 } from '@/shared/types/domain'
 import { mockApi } from './mockApi'
+import { realApi } from './realApi'
 
 export type SessionStartInput = {
   labId: string
@@ -39,4 +40,6 @@ export interface ApiClient {
   getSessionReview(sessionId: string): Promise<SessionReview>
 }
 
-export const apiClient: ApiClient = mockApi
+const API_MODE = (import.meta.env.VITE_API_MODE ?? 'mock').toLowerCase()
+
+export const apiClient: ApiClient = API_MODE === 'real' ? realApi : mockApi

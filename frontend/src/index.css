@@ -1,9 +1,342 @@
 @import 'tailwindcss';
 
+@theme {
+  --font-sans:
+    'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue',
+    'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic',
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+
+  /* Elice Academy Exact Palette */
+  --color-primary: #7353EA;
+  /* Elice Purple */
+  --color-primary-foreground: #ffffff;
+
+  --color-secondary: #AB9DFE;
+  /* Soft Purple for accents */
+  --color-secondary-foreground: #ffffff;
+
+  --color-accent: #F3F0FF;
+  --color-accent-foreground: #7353EA;
+
+  --color-background: #F8F9FA;
+  /* Elice Off-white background */
+  --color-foreground: #191F28;
+  /* Elice Dark Gray Text - NOT Black */
+
+  --color-card: #ffffff;
+  --color-card-foreground: #191F28;
+
+  --color-muted: #F1F3F5;
+  --color-muted-foreground: #8B95A1;
+  /* Elice Sub-text Gray */
+
+  --color-border: #E5E8EB;
+  /* Elice Border */
+  --color-input: #E5E8EB;
+
+  --color-destructive: #EF4444;
+  --color-destructive-foreground: #ffffff;
+
+  --color-success: #00C471;
+  /* Elice Green */
+  --color-warning: #FFAB00;
+
+  /* Strict Spacing & Radius */
+  --radius-xl: 16px;
+  --radius-lg: 12px;
+  --radius-md: 8px;
+  --radius-sm: 4px;
+
+  --header-height: 64px;
+  --sidebar-width: 260px;
+}
+
 :root {
-  color: #162329;
+  font-family: var(--font-sans);
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  /* Pretendard optimal tracking */
 }
 
 body {
   margin: 0;
+  min-height: 100vh;
+  background: var(--color-background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* ── Typography Utilities ── */
+.text-h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-foreground);
+  letter-spacing: -0.01em;
+}
+
+.text-h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-foreground);
+  letter-spacing: -0.01em;
+}
+
+.text-h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-foreground);
+}
+
+.text-body-1 {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-foreground);
+}
+
+.text-body-2 {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-foreground);
+}
+
+.text-sub {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--color-muted-foreground);
+}
+
+/* ── "Human-Crafted" Components (Round 4 Updates) ── */
+
+/* Elice Silky Purple Gradient */
+.elice-mesh-gradient {
+  background: radial-gradient(circle at 50% 50%, #7d60e8 0%, #5d40c8 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.elice-mesh-gradient::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Elice Card: Richer Shadow for Round 4 */
+.elice-card {
+  background: white;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+  /* Slight scale up from Round 3 */
+}
+
+.elice-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(115, 83, 234, 0.15);
+  /* Purple tint shadow */
+  border-color: #7353EA;
+  /* Distinct purple border on hover */
+}
+
+/* Elice Button: 48px height usually, rounded 8px */
+.btn-primary {
+  background: var(--color-primary);
+  color: white;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: #5F3DC4;
+  /* Darker purple */
+}
+
+/* ── Glassmorphism & Effects (v2.0) ── */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.glass-header {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(229, 232, 235, 0.5);
+}
+
+.nav-link {
+  position: relative;
+  display: inline-block;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: var(--color-primary);
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.nav-link:hover::after,
+.nav-link-active::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.btn-glow {
+  position: relative;
+  z-index: 1;
+}
+
+.btn-glow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  background: inherit;
+  filter: blur(8px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.btn-glow:hover::before {
+  opacity: 0.6;
+}
+
+/* ── Premium Details (v2.1) ── */
+.premium-card {
+  background: white;
+  border: 1px solid rgba(229, 232, 235, 0.8);
+  border-radius: 24px;
+  box-shadow:
+    0 1px 3px rgba(25, 31, 40, 0.02),
+    0 4px 12px rgba(25, 31, 40, 0.03),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+  /* Inner text/edge glow */
+  transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.premium-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow:
+    0 4px 20px rgba(115, 83, 234, 0.08),
+    0 8px 32px rgba(115, 83, 234, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+  border-color: rgba(115, 83, 234, 0.2);
+}
+
+/* Shimmer Progress Bar */
+.animated-progress {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(90deg, #7353EA 0%, #A78BFA 50%, #7353EA 100%);
+  background-size: 200% auto;
+  animation: shine 3s linear infinite;
+  border-radius: 999px;
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+/* ── Layout Utilities ── */
+.layout-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ── Progress Bar (Elice Style) ── */
+.progress-track {
+  height: 6px;
+  background-color: #F1F3F5;
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: var(--color-primary);
+  border-radius: 100px;
+  transition: width 0.5s cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* ── Animations (Minimal) ── */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-enter {
+  animation: fadeIn 0.4s cubic-bezier(0.2, 0, 0, 1) forwards;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #DBE1E6;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #CED4DA;
 }

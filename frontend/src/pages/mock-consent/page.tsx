@@ -9,7 +9,7 @@ export function MockConsentPage() {
         <li>허용문서 외 참고 금지</li>
         <li>시간 종료 시 자동 제출</li>
       </ul>
-      <Link className="mt-3 inline-block rounded-md bg-stone-900 px-3 py-2 text-sm text-white" to="/aice/mock/session/mock-001">
+      <Link className="mt-3 inline-block rounded-md bg-stone-900 px-3 py-2 text-sm text-white" to="/mock/session/mock-001">
         모의 시작
       </Link>
     </Surface>

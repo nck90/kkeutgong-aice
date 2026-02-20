@@ -1,88 +1,219 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useMutation, useQuery } from '@tanstack/react-query'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useSessionPlayer } from '@/entities/session/model/useSessionPlayer'
 import { useSessionTimer } from '@/entities/session/model/useSessionTimer'
 import { apiClient } from '@/shared/api/client'
-import { Surface } from '@/widgets/cards/surface'
+import { recordOutcomeEvent } from '@/shared/lib/adaptive-feedback'
+import { toast } from '@/shared/lib/toast'
+import type { SubmitResult } from '@/shared/types/domain'
+import { Skeleton } from '@/shared/ui/skeleton'
 import { PolicyBlockedDialog } from '@/widgets/modal/policyBlockedDialog'
+import { IdeWorkspace } from './IdeWorkspace'
+
+type FeedbackEntry = {
+  id: string
+  at: string
+  stepNo: number
+  result: SubmitResult['result'] | 'ERROR'
+  message: string
+}
+
+const extractAssignedVars = (source: string) => {
+  return Array.from(new Set(source.match(/\b[a-zA-Z_]\w*(?=\s*=)/g) ?? []))
+}
 
 export function SessionPage() {
   const { sessionId = 'demo-001' } = useParams()
-  const navigate = useNavigate()
 
-  const { data } = useQuery({ queryKey: ['session', sessionId], queryFn: () => apiClient.getSession(sessionId) })
+  const { data } = useQuery({
+    queryKey: ['session', sessionId],
+    queryFn: () => apiClient.getSession(sessionId),
+  })
   const { steps, openStep, progress, hydrateSteps } = useSessionPlayer(data?.steps ?? [])
-  const { seconds, formatted } = useSessionTimer(data?.timerSec ?? 0, data?.mode === 'Mock')
+  const { formatted } = useSessionTimer(data?.timerSec ?? 0, data?.mode === 'Mock')
+
   const [code, setCode] = useState('answer02 = df.fillna(0)')
+  const [logs, setLogs] = useState<string[]>([])
   const [policyError, setPolicyError] = useState('')
+  const [runCount, setRunCount] = useState(0)
+  const [lastRunMs, setLastRunMs] = useState(0)
+  const [feedbackHistory, setFeedbackHistory] = useState<FeedbackEntry[]>([])
+  const modeForEvent = data?.mode ?? 'Practice+'
 
   useEffect(() => {
     if (data?.steps?.length) hydrateSteps(data.steps)
   }, [data?.steps, hydrateSteps])
 
-  useEffect(() => {
-    if (data?.mode === 'Mock' && seconds === 0) {
-      navigate(`/aice/mock/session/${sessionId}/result`)
-    }
-  }, [data?.mode, navigate, seconds, sessionId])
+  const activeStep = useMemo(() => openStep ?? steps[0], [openStep, steps])
 
   const submitMutation = useMutation({
     mutationFn: () => apiClient.submitStep(sessionId, code),
     onSuccess: (result) => {
+      const now = new Date().toLocaleTimeString('ko-KR', { hour12: false })
       if (result.errorCodes.includes('POLICY_BLOCKED')) {
+        recordOutcomeEvent({
+          sessionId,
+          mode: modeForEvent,
+          result: 'FAIL',
+          errorCodes: ['POLICY_BLOCKED'],
+        })
         setPolicyError('POLICY_BLOCKED')
+        toast({
+          tone: 'error',
+          title: '정책 위반 감지',
+          description: '허용되지 않은 접근 패턴으로 제출이 차단되었습니다.',
+        })
+        setFeedbackHistory((prev) => [
+          {
+            id: `${Date.now()}-policy`,
+            at: now,
+            stepNo: activeStep?.no ?? 0,
+            result: 'FAIL',
+            message: '정책 위반으로 제출이 차단되었습니다.',
+          },
+          ...prev,
+        ])
         return
       }
+
+      const resultMessage =
+        result.result === 'PASS'
+          ? '정답 처리되었습니다.'
+          : result.result === 'PARTIAL'
+            ? '부분 정답입니다. 보완 후 재제출하세요.'
+            : '오답입니다. 변수 선언/타입을 다시 확인하세요.'
+
+      setLogs((prev) => [...prev, `[${result.result}] ${resultMessage}`])
+      recordOutcomeEvent({
+        sessionId,
+        mode: modeForEvent,
+        result: result.result,
+        errorCodes: result.errorCodes,
+      })
+      toast({
+        tone: result.result === 'PASS' ? 'success' : result.result === 'PARTIAL' ? 'info' : 'error',
+        title: `Step ${activeStep?.no ?? '-'} 제출 결과: ${result.result}`,
+        description: resultMessage,
+      })
+      setFeedbackHistory((prev) => [
+        {
+          id: `${Date.now()}-submit`,
+          at: now,
+          stepNo: activeStep?.no ?? 0,
+          result: result.result,
+          message: result.errorCodes.length
+            ? `${resultMessage} (${result.errorCodes.join(', ')})`
+            : resultMessage,
+        },
+        ...prev,
+      ])
       hydrateSteps(result.nextSteps)
+    },
+    onError: (err) => {
+      const now = new Date().toLocaleTimeString('ko-KR', { hour12: false })
+      setLogs((prev) => [...prev, `[ERROR] Submission failed: ${err.message}`])
+      recordOutcomeEvent({
+        sessionId,
+        mode: modeForEvent,
+        result: 'ERROR',
+        errorCodes: [],
+      })
+      toast({
+        tone: 'error',
+        title: '제출 실패',
+        description: err.message,
+      })
+      setFeedbackHistory((prev) => [
+        {
+          id: `${Date.now()}-error`,
+          at: now,
+          stepNo: activeStep?.no ?? 0,
+          result: 'ERROR',
+          message: err.message,
+        },
+        ...prev,
+      ])
     },
   })
 
-  if (!data) return null
+  const handleRun = () => {
+    const simulatedMs = Math.max(120, Math.min(1800, Math.round(code.length * 3.2)))
+    setRunCount((prev) => prev + 1)
+    setLastRunMs(simulatedMs)
+    setLogs((prev) => [
+      ...prev,
+      '[RUN] Executing code in sandbox runtime...',
+      `> ${code.split('\n')[0]}...`,
+    ])
+    setTimeout(() => {
+      setLogs((prev) => [
+        ...prev,
+        `[OUT] Runtime ${simulatedMs}ms`,
+        '[OUT] DataFrame shape: (100, 5)',
+        '[OUT] Missing values handled',
+      ])
+    }, 650)
+  }
+
+  if (!data || !activeStep) {
+    return (
+      <div className="flex h-full w-full flex-col gap-3 p-4">
+        <Skeleton className="h-10 w-full rounded-xl" />
+        <div className="grid flex-1 grid-cols-[1.2fr_1.4fr_1fr] gap-3">
+          <Skeleton className="h-full rounded-xl" />
+          <Skeleton className="h-full rounded-xl" />
+          <Skeleton className="h-full rounded-xl" />
+        </div>
+        <Skeleton className="h-12 w-full rounded-xl" />
+      </div>
+    )
+  }
+
+  const assignedVars = extractAssignedVars(code)
+  const missingVars = activeStep.requiredVars.filter((variable) => !assignedVars.includes(variable))
+  const variableScore = activeStep.requiredVars.length
+    ? Math.max(
+        0,
+        Math.round(((activeStep.requiredVars.length - missingVars.length) / activeStep.requiredVars.length) * 100),
+      )
+    : 100
+  const requiredVars = activeStep.requiredVars.join(', ')
+  const instruction = `# Step ${activeStep.no}: ${activeStep.title}\n\n1) \`df\` 전처리 결과를 확인하세요.\n2) 답안 변수(\`${requiredVars}\`)를 정확히 선언하세요.\n3) 코드 실행 후 제출해 채점 결과를 확인하세요.`
 
   return (
     <>
-      <div className="grid gap-4 lg:grid-cols-3">
-        <Surface title={`세션 ${sessionId}`} right={<span className="text-sm">진행률 {progress}%</span>}>
-          <ul className="space-y-2 text-sm">
-            {steps.map((step) => (
-              <li key={step.no} className="rounded border p-2">
-                Step {step.no} · {step.title} · {step.state}
-              </li>
-            ))}
-          </ul>
-        </Surface>
-        <Surface title="문제/코드" right={<span className="text-xs text-stone-600">Mode: {data.mode}</span>}>
-          <label className="mb-2 block text-sm font-medium" htmlFor="editor">
-            답안 코드
-          </label>
-          <textarea
-            id="editor"
-            aria-label="답안 코드 에디터"
-            className="h-60 w-full rounded-md border border-stone-300 p-2 font-mono text-sm"
-            value={code}
-            onChange={(event) => setCode(event.target.value)}
-          />
-          {data.mode === 'Mock' ? <p className="mt-2 text-sm text-stone-600">남은 시간: {formatted}</p> : null}
-        </Surface>
-        <Surface title="채점/피드백">
-          <p className="mb-2 text-sm">필수 변수: {openStep?.requiredVars.join(', ') ?? '-'}</p>
-          <div className="flex flex-wrap gap-2">
-            <button
-              className="rounded-md bg-stone-900 px-3 py-2 text-sm text-white"
-              onClick={() => submitMutation.mutate()}
-              disabled={submitMutation.isPending}
-            >
-              {submitMutation.isPending ? '제출 중...' : '스텝 제출'}
-            </button>
-            <Link className="rounded-md border border-stone-300 bg-white px-3 py-2 text-sm" to={`/aice/session/${sessionId}/review`}>
-              리뷰 이동
-            </Link>
-          </div>
-        </Surface>
-      </div>
+      <IdeWorkspace
+        sessionId={sessionId}
+        mode={data.mode}
+        policy={data.policy}
+        activeStep={activeStep.no}
+        instruction={instruction}
+        code={code}
+        onCodeChange={(val) => setCode(val || '')}
+        steps={steps}
+        progress={progress}
+        timerLabel={formatted}
+        logs={logs}
+        runCount={runCount}
+        lastRunMs={lastRunMs}
+        variableCheck={{
+          required: activeStep.requiredVars,
+          assigned: assignedVars,
+          missing: missingVars,
+          score: variableScore,
+        }}
+        feedbackHistory={feedbackHistory.slice(0, 6)}
+        onRun={handleRun}
+        onSubmit={() => submitMutation.mutate()}
+        isRunning={submitMutation.isPending}
+      />
 
-      <PolicyBlockedDialog open={Boolean(policyError)} errorCode={policyError} onClose={() => setPolicyError('')} />
+      <PolicyBlockedDialog
+        open={Boolean(policyError)}
+        errorCode={policyError}
+        onClose={() => setPolicyError('')}
+      />
     </>
   )
 }
