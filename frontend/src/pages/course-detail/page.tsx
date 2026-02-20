@@ -30,7 +30,7 @@ export function CourseDetailPage() {
        */}
             <div className="bg-white border-b border-[#E5E8EB]">
                 <div className="max-w-[1200px] mx-auto px-6 h-[50px] flex items-center text-[13px] text-[#8B95A1]">
-                    <Link to="/home" className="hover:text-[#191F28]">홈</Link>
+                    <Link to="/" className="hover:text-[#191F28]">홈</Link>
                     <ChevronRight className="w-3 h-3 mx-2" />
                     <Link to="/classes" className="hover:text-[#191F28]">전체 강좌</Link>
                     <ChevronRight className="w-3 h-3 mx-2" />

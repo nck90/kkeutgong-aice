@@ -161,8 +161,9 @@ export function AppRouter() {
         <Route path="/proposal" element={withSuspense(<ProposalPage />)} />
 
         <Route element={<MainLayout />}>
-          <Route path="/" element={withSuspense(<DashboardPage />)} />
-          <Route path="/home" element={withSuspense(<HomePage />)} />
+          <Route path="/" element={withSuspense(<HomePage />)} />
+          <Route path="/home" element={<Navigate to="/" replace />} />
+          <Route path="/report" element={withSuspense(<DashboardPage />)} />
           <Route path="/class/:level" element={withSuspense(<ClassLevelPage />)} />
           <Route path="/course/:courseId" element={withSuspense(<CourseDetailPage />)} />
           <Route path="/course/:courseId/:stepId" element={withSuspense(<LearningPage />)} />
@@ -295,8 +296,8 @@ export function AppRouter() {
           <Route path="/explore" element={<Navigate to="/labs" replace />} />
           <Route path="/my-classes" element={<Navigate to="/classes" replace />} />
 
-          <Route path="/aice" element={<Navigate to="/home" replace />} />
-          <Route path="/aice/dashboard" element={<Navigate to="/" replace />} />
+          <Route path="/aice" element={<Navigate to="/" replace />} />
+          <Route path="/aice/dashboard" element={<Navigate to="/report" replace />} />
           <Route path="/aice/dashboard/history" element={<Navigate to="/history" replace />} />
           <Route path="/aice/labs" element={<Navigate to="/labs" replace />} />
           <Route path="/aice/labs/list" element={<Navigate to="/labs" replace />} />

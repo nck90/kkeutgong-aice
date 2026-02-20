@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-dom'
 
 export function MockPage() {
-  return <Navigate to="/home" replace />
+  return <Navigate to="/" replace />
 }

@@ -4,7 +4,7 @@ import { Button } from '@/shared/ui/button'
 import { useAiceStore } from '@/shared/model/store'
 
 const navLinks = [
-  { label: '홈', href: '/home' },
+  { label: '홈', href: '/' },
   // { label: '모의고사', href: '/mock' }, 
   // Temporarily hidden until a dedicated history page is built. 
   // Users access mock exams via the Dashboard Roadmap.
@@ -19,7 +19,7 @@ export function Header({ onMenuClick }: { onMenuClick: () => void }) {
 
         {/* Left: Logo & Nav */}
         <div className="flex items-center gap-10">
-          <Link to="/home" className="flex items-center gap-2">
+          <Link to="/" className="flex items-center gap-2">
             {/* Simple Text Logo like Elice */}
             <span className="text-[22px] font-bold tracking-tight text-[#7353EA]">AICE Prep</span>
           </Link>

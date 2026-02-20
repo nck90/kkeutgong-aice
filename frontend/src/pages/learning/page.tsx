@@ -51,7 +51,7 @@ export function LearningPage() {
             )}>
                 {/* Sidebar Header */}
                 <div className="h-[64px] flex items-center px-5 border-b border-[#333] shrink-0">
-                    <Link to="/home" className="text-white/80 hover:text-white mr-3">
+                    <Link to="/" className="text-white/80 hover:text-white mr-3">
                         <ChevronLeft className="w-5 h-5" />
                     </Link>
                     <h2 className="text-white font-bold text-sm truncate">{course.title}</h2>
