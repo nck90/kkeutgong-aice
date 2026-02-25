@@ -25,7 +25,7 @@ const slidesGeneralPart2 = [
     {
         id: 'g-user-research',
         content: (
-            <div className="flex flex-col justify-center items-center h-full w-full px-12 md:px-24">
+            <div className="flex flex-col justify-center items-center h-full w-full px-12 md:px-24 break-keep">
                 <h3 className="text-primary font-bold text-xl mb-4 tracking-widest uppercase text-center">
                     User Research
                 </h3>
@@ -67,7 +67,7 @@ const slidesGeneralPart2 = [
     {
         id: 'g-solution-concept',
         content: (
-            <div className="flex flex-col justify-center items-center h-full w-full px-12 md:px-24 bg-[#191F28] text-white">
+            <div className="flex flex-col justify-center items-center h-full w-full px-12 md:px-24 bg-[#191F28] text-white break-keep">
                 <h3 className="text-primary font-bold text-xl mb-6 tracking-widest uppercase text-center">
                     Solution
                 </h3>
@@ -105,7 +105,7 @@ const slidesGeneralPart2 = [
     {
         id: 'g-platform-intro',
         content: (
-            <div className="flex flex-col justify-center items-center h-full w-full px-12 md:px-24">
+            <div className="flex flex-col justify-center items-center h-full w-full px-12 md:px-24 break-keep">
                 <h3 className="text-primary font-bold text-xl mb-4 tracking-widest uppercase text-center">
                     AICE Platform — Real Features
                 </h3>
@@ -283,7 +283,7 @@ const slidesGeneralPart2 = [
     {
         id: 'g-zero-config',
         content: (
-            <div className="flex flex-col justify-center items-center h-full w-full px-12 md:px-24">
+            <div className="flex flex-col justify-center items-center h-full w-full px-12 md:px-24 break-keep">
                 <h3 className="text-green-500 font-bold text-xl mb-4 tracking-widest uppercase text-center">
                     Zero Configuration
                 </h3>
@@ -333,7 +333,7 @@ const slidesGeneralPart2 = [
     {
         id: 'g-service-04',
         content: (
-            <div className="flex flex-col justify-center items-center h-full w-full px-12 md:px-24">
+            <div className="flex flex-col justify-center items-center h-full w-full px-12 md:px-24 break-keep">
                 <div className="max-w-5xl w-full">
                     <div className="flex flex-col md:flex-row gap-12 items-center">
                         <div className="flex-1 text-center md:text-left">

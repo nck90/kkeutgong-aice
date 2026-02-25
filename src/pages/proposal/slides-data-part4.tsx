@@ -75,7 +75,7 @@ const slidesPart4 = [
               주관
             </div>
             <p className="font-bold text-xl text-foreground mb-2">AICE 등 주관사</p>
-            <p className="text-base text-muted-foreground text-center leading-relaxed">
+            <p className="text-base text-muted-foreground text-center leading-relaxed break-keep">
               수험율 및 공신력 상승<br />
               취약점 분석 데이터 모델 확보
             </p>
@@ -98,7 +98,7 @@ const slidesPart4 = [
             ➔ 고품질 ➔
           </div>
 
-          <div className="flex flex-col items-center flex-1">
+          <div className="flex flex-col items-center flex-1 break-keep">
             <div className="w-24 h-24 bg-blue-50 text-blue-500 rounded-full flex items-center justify-center font-bold mb-6 border border-blue-100 shadow-inner">
               <Users className="w-10 h-10" />
             </div>
@@ -129,7 +129,7 @@ const slidesPart4 = [
             </div>
             <div className="text-primary text-xl font-bold mb-4">Phase 1 (MVP)</div>
             <h3 className="text-3xl font-black mb-6 text-foreground">현재까지 구현된 4대 핵심 영역</h3>
-            <ul className="space-y-4 text-lg text-muted-foreground font-medium">
+            <ul className="space-y-4 text-lg text-muted-foreground font-medium break-keep">
               <li className="flex items-center gap-3"><span className="w-2 h-2 bg-primary rounded-full"></span> 14일 맞춤 스케줄러 (Plan)</li>
               <li className="flex items-center gap-3"><span className="w-2 h-2 bg-primary rounded-full"></span> AICE 핵심 요약 개념 (Textbook)</li>
               <li className="flex items-center gap-3"><span className="w-2 h-2 bg-primary rounded-full"></span> 라이브 파이썬 코딩 및 피드백 (Labs)</li>
@@ -139,17 +139,17 @@ const slidesPart4 = [
 
           <div className="bg-white p-10 rounded-3xl border border-border flex-1 border-t-8 border-t-blue-500 shadow-xl transform hover:-translate-y-2 transition-transform">
             <div className="text-blue-500 text-xl font-bold mb-4">Phase 2 (고도화)</div>
-            <h3 className="text-3xl font-black mb-6 text-foreground">학습 튜터링 파이프라인</h3>
-            <ul className="space-y-4 text-lg text-muted-foreground font-medium">
+            <h3 className="text-3xl font-black mb-6 text-foreground break-keep">학습 튜터링 파이프라인</h3>
+            <ul className="space-y-4 text-lg text-muted-foreground font-medium break-keep">
               <li className="flex items-start gap-3"><span className="w-2 h-2 bg-blue-500 rounded-full mt-2 shrink-0"></span> 실전 AICE CBT 환경과 100% 동일한 통합 모의고사 (Mock Exam)</li>
               <li className="flex items-start gap-3"><span className="w-2 h-2 bg-blue-500 rounded-full mt-2 shrink-0"></span> 유저의 코드를 실시간으로 읽고 힌트를 제공하는 AI-Tutor 챗봇</li>
             </ul>
           </div>
 
-          <div className="bg-[#111] p-10 rounded-3xl border border-border flex-1 border-t-8 border-t-green-500 shadow-xl transform hover:-translate-y-2 transition-transform text-white">
+          <div className="bg-[#111] p-10 rounded-3xl border border-border flex-1 border-t-8 border-t-green-500 shadow-xl transform hover:-translate-y-2 transition-transform text-white break-keep">
             <div className="text-green-400 text-xl font-bold mb-4">Phase 3 (비전 확장)</div>
             <h3 className="text-3xl font-black mb-6">IT/SW 자격증 시장 제패</h3>
-            <ul className="space-y-4 text-lg text-gray-400 font-medium">
+            <ul className="space-y-4 text-lg text-gray-400 font-medium break-keep">
               <li className="flex items-start gap-3"><span className="w-2 h-2 bg-green-400 rounded-full mt-2 shrink-0"></span> 정보처리기사, 빅데이터 분석 기사 등 [실기] 기반 시험 포섭</li>
               <li className="flex items-start gap-3"><span className="w-2 h-2 bg-green-400 rounded-full mt-2 shrink-0"></span> 합격자와 예비 응시생을 잇는 프리미엄 러닝 커뮤니티</li>
             </ul>
@@ -175,7 +175,7 @@ const slidesPart4 = [
             <div className="absolute inset-0 bg-primary blur-[40px] opacity-70 rounded-full animate-pulse"></div>
             <div className="font-black text-6xl text-white relative z-10 border-4 border-white/20 w-24 h-24 flex items-center justify-center rounded-3xl bg-white/5 backdrop-blur-md">끝</div>
           </div>
-          <h2 className="text-5xl md:text-[80px] font-black tracking-tighter mb-10 text-white leading-[1.2]">
+          <h2 className="text-5xl md:text-[80px] font-black tracking-tighter mb-10 text-white leading-[1.2] break-keep">
             막막했던 자격증 공부,<br />
             14일 챌린지로 <span className="text-primary">끝장냅니다.</span>
           </h2>

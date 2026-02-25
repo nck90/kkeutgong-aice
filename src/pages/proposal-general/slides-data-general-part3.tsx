@@ -7,7 +7,7 @@ const slidesGeneralPart3 = [
     {
         id: 'g-market-size',
         content: (
-            <div className="flex flex-col justify-center items-center h-full w-full px-12 md:px-24">
+            <div className="flex flex-col justify-center items-center h-full w-full px-12 md:px-24 break-keep">
                 <h3 className="text-primary font-bold text-xl mb-4 tracking-widest uppercase text-center">
                     Market Research
                 </h3>

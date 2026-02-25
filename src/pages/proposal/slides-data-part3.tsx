@@ -17,14 +17,14 @@ const slidesPart3 = [
             <h2 className="text-5xl font-bold mb-8 text-foreground leading-[1.3] max-w-2xl">
               "내 실력이 어느 정도인지<br />데이터로 객관화합니다"
             </h2>
-            <div className="flex flex-col gap-6 text-xl text-muted-foreground leading-[1.8] max-w-2xl">
+            <div className="flex flex-col gap-6 text-xl text-muted-foreground leading-[1.8] max-w-2xl break-keep">
               <p>
                 학습 시작 전 <b>사전 진단고사(Diagnostic)</b>를 통해 정확한 내 위치를 파악하고,
                 매일 주어지는 미션을 통해 나의 취약 파트를 수치화된 리포트로 관리받습니다.
               </p>
               <div className="bg-amber-500/10 p-6 rounded-2xl border border-amber-500/20 text-amber-900 font-bold flex items-start gap-4">
                 <BarChart className="w-8 h-8 text-amber-600 shrink-0" />
-                <div>
+                <div className="leading-relaxed">
                   감으로 하는 공부는 필패합니다.<br />
                   끝공은 유저의 코딩 정답률 데이터를 기반으로 가장 시급한 파트부터 타격하도록 커리큘럼을 실시간으로 우회합니다.
                 </div>
@@ -53,9 +53,12 @@ const slidesPart3 = [
           자격증은 끝이 아니라 시작입니다.
         </h2>
         <div className="bg-white p-10 rounded-3xl border border-border shadow-xl max-w-4xl mx-auto mt-8">
-          <p className="text-2xl text-muted-foreground leading-[1.8] text-center">
+          <p className="text-2xl text-muted-foreground leading-[1.8] text-center break-keep">
             끝공의 진짜 목표는 단순한 종이 조각이 아닙니다.
-            <br />단 한 번이라도 Jupyter에서 데이터를 다뤄보고 예외(에러)를 처리해 본 감각. 그 AI 리터러시를 수험생의 머리와 손에 강력하게 각인시킵니다.
+            <br />
+            <br />
+            <span className="text-foreground font-medium">단 한 번이라도 Jupyter에서 데이터를 다뤄보고 예외(에러)를 처리해 본 감각.</span><br />
+            그 AI 리터러시를 수험생의 머리와 손에 강력하게 각인시킵니다.
           </p>
         </div>
       </div>
@@ -78,7 +81,7 @@ const slidesPart3 = [
               <MessageSquare className="w-8 h-8 text-blue-500 fill-blue-500/20" />
             </div>
           </div>
-          <div className="flex-1">
+          <div className="flex-1 max-w-2xl break-keep">
             <div className="bg-gray-100 p-6 rounded-2xl mb-6 relative w-max max-w-full">
               <p className="text-2xl font-bold text-foreground">
                 "선생님, 이 pandas 코드에서 왜 KeyError가 나나요?"
@@ -86,8 +89,8 @@ const slidesPart3 = [
               <div className="absolute -left-4 top-1/2 -mt-3 w-0 h-0 border-t-[10px] border-t-transparent border-r-[20px] border-r-gray-100 border-b-[10px] border-b-transparent"></div>
             </div>
             <p className="text-xl text-muted-foreground leading-relaxed pl-4 border-l-4 border-primary">
-              에러 때문에 진도가 막히면 1:1 대화형 챗봇에게 곧바로 질문하세요. 단순히 구글링을 대신하는 것이 아니라,
-              수험생이 풀고 있는 문항과 <b>작성한 파이썬 코드를 AI가 실시간으로 같이 읽으며</b> 과외 강사처럼 힌트를 제시합니다.
+              에러 때문에 진도가 막히면 1:1 대화형 챗봇에게 곧바로 질문하세요.<br />
+              단순히 구글링을 대신하는 것이 아니라, 수험생이 풀고 있는 문항과 <b>작성한 파이썬 코드를 AI가 실시간으로 같이 읽으며</b> 과외 강사처럼 힌트를 제시합니다.
             </p>
           </div>
         </div>
@@ -121,25 +124,25 @@ const slidesPart3 = [
           <Search className="w-12 h-12 text-blue-500" /> '코딩 실습형' 민간 자격증의 블루오션
         </h2>
         <div className="flex flex-col md:flex-row gap-8 max-w-[1400px] items-stretch w-full justify-center">
-          <div className="bg-white p-10 rounded-3xl border border-border flex-1 shadow-md">
+          <div className="bg-white p-10 rounded-3xl border border-border flex-1 shadow-md break-keep">
             <h4 className="text-2xl font-bold mb-6">데이터 리터러시 시대</h4>
             <p className="text-lg text-muted-foreground leading-relaxed">
               더 이상 암기식 자격증이 대우받지 않습니다. AICE를 필두로, 직접 코드를 작성하고 실무 능력을 방증하는 디지털 역량 검정 자격증 수요가 B2B/B2C 할 것 없이 폭증 중입니다.
             </p>
           </div>
-          <div className="bg-white p-10 rounded-3xl border-2 border-primary flex-[1.5] shadow-2xl relative overflow-hidden">
+          <div className="bg-white p-10 rounded-3xl border-2 border-primary flex-[1.5] shadow-2xl relative overflow-hidden break-keep">
             <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-[100px] -z-10"></div>
             <div className="bg-primary text-white text-sm font-bold px-4 py-1.5 rounded-full w-max mb-6 tracking-widest uppercase">
               경쟁자의 한계
             </div>
             <h4 className="text-3xl font-black text-primary mb-6">[인프라 구축]의 장벽</h4>
             <p className="text-foreground text-xl leading-relaxed font-bold mb-6">
-              아무나 "AICE 대비 앱"을 외칠 수는 있습니다. O/X 문항만 텍스트로 띄워주면 되니까요.
+              아무나 "AICE 대비 앱"을 외칠 수는 있습니다.<br />O/X 문항만 텍스트로 띄워주면 되니까요.
             </p>
             <div className="bg-[#FAFAFA] p-6 rounded-2xl border border-border">
               <p className="text-lg text-muted-foreground leading-relaxed">
-                하지만 끝공처럼 "브라우저에 Jupyter 커널을 이식하여 파이썬 코드를 1초 만에 실행/채점"해주는 <b>클라우드 컴파일러 서버 환경</b>은
-                막대한 클라우드 인프라 이해도와 파이프라인 설계기가 필요합니다.<br /><br />
+                하지만 끝공처럼 "브라우저에 Jupyter 커널을 이식하여 파이썬 코드를 1초 만에 실행/채점"해주는 <b>클라우드 컴파일러 서버 환경</b>은 막대한 클라우드 인프라 이해도와 파이프라인 설계기가 필요합니다.
+                <br /><br />
                 가벼운 마음으로 접근하는 선발/후발주자들이 감히 넘볼 수 없는 강력한 기술적 해자(Moat)입니다.
               </p>
             </div>

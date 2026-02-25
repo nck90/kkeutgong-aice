@@ -17,7 +17,7 @@ const slidesPart1 = [
         <h1 className="text-6xl md:text-[100px] font-black tracking-tighter mb-8 bg-clip-text text-transparent bg-gradient-to-br from-white via-white to-white/60">
           끝공
         </h1>
-        <p className="text-lg md:text-2xl text-white/80 max-w-4xl mx-auto font-light leading-relaxed mt-4">
+        <p className="text-lg md:text-2xl text-white/80 max-w-4xl mx-auto font-light leading-relaxed mt-4 break-keep">
           막막했던 자격증 공부, 진짜 쳐보며 익히는 14일 챌린지로 끝장내다.
         </p>
       </div>
@@ -36,11 +36,11 @@ const slidesPart1 = [
           자격증 공부, 시작부터 막막하지 않으세요?
         </h2>
         <div className="max-w-4xl bg-white p-10 rounded-3xl border border-border shadow-xl flex flex-col gap-6">
-          <p className="text-2xl leading-[1.8] text-muted-foreground">
+          <p className="text-2xl leading-[1.8] text-muted-foreground break-keep">
             두꺼운 전공 서적을 사자니 부담스럽고, 긴 인터넷 강의는 끝까지 들을 자신이 없습니다.
           </p>
           <div className="bg-primary/5 p-6 rounded-2xl border border-primary/10">
-            <p className="text-2xl leading-[1.8] text-foreground font-bold">
+            <p className="text-2xl leading-[1.8] text-foreground font-bold break-keep">
               결국 포기하는 진짜 이유. 의지 부족이 아니라, <span className="text-primary">"단기간에 집중 탈환할 내 수준에 맞는 실전 커리큘럼"</span>이 없기 때문입니다.
             </p>
           </div>
@@ -63,7 +63,7 @@ const slidesPart1 = [
             <h2 className="text-5xl font-bold mb-8 text-foreground leading-[1.3] max-w-2xl">
               합격률 34%의 장벽, 왜 우린 시험에서 무너질까요?
             </h2>
-            <div className="flex flex-col gap-6 text-xl text-muted-foreground leading-[1.8] max-w-2xl">
+            <div className="flex flex-col gap-6 text-xl text-muted-foreground leading-[1.8] max-w-2xl break-keep">
               <p>
                 AICE를 비롯한 민간 자격증 응시자들은 늘어나지만 합격률은 여전히 30%대에 머뭅니다.
               </p>
@@ -113,10 +113,10 @@ const slidesPart1 = [
             <h3 className="text-amber-500 font-bold text-xl mb-4 tracking-widest uppercase">
               The Reality
             </h3>
-            <h2 className="text-5xl font-bold mb-8 text-foreground leading-[1.3] max-w-2xl">
+            <h2 className="text-5xl font-bold mb-8 text-foreground leading-[1.3] max-w-2xl break-keep">
               이론으로 하는 공부와 실전 코딩 사이의 치명적 괴리
             </h2>
-            <div className="flex flex-col gap-6 text-xl text-muted-foreground leading-[1.8] max-w-2xl">
+            <div className="flex flex-col gap-6 text-xl text-muted-foreground leading-[1.8] max-w-2xl break-keep">
               <p>
                 파이썬의 Pandas 데이터 전처리나 Scikit-Learn 모델링은 "강사의 눈으로 구경"하는 것으로는 절대 지식이 습득되지 않습니다.
               </p>
@@ -135,8 +135,8 @@ const slidesPart1 = [
                 </div>
                 <h4 className="text-3xl font-black text-foreground">"눈으로만 코드를 읽습니다"</h4>
               </div>
-              <p className="text-xl text-muted-foreground leading-[1.8] mt-6">
-                수많은 수험생들이 방대한 텍스트북을 눈으로만 읽다가 실질적인 코딩 구현력을 상실합니다. 코딩은 손의 근육이 기억해야 합니다.
+              <p className="text-xl text-muted-foreground leading-[1.8] mt-6 break-keep">
+                수많은 수험생들이 방대한 텍스트북을 눈으로만 읽다가 실질적인 코딩 구현력을 상실합니다.<br />코딩은 손의 근육이 기억해야 합니다.
               </p>
             </div>
           </div>
@@ -156,12 +156,12 @@ const slidesPart1 = [
         <h2 className="text-5xl md:text-6xl font-black mb-10 leading-[1.3] max-w-4xl">
           100시간을 쏟을 수 없는<br />가장 바쁜 직장인과 학생
         </h2>
-        <div className="flex flex-col gap-6 text-2xl text-white/70 max-w-3xl leading-[1.8]">
+        <div className="flex flex-col gap-6 text-2xl text-white/70 max-w-3xl leading-[1.8] break-keep">
           <p>
             저희가 집중한 고객은 시간의 가치를 가장 소중하게 생각하는 분들입니다.
           </p>
           <div className="bg-white/10 p-6 rounded-2xl border border-white/10 inline-block backdrop-blur-sm">
-            <p className="text-white font-bold">
+            <p className="text-white font-bold leading-relaxed">
               14일. 방대한 이론 대신 "반드시 나오는 개념"과 "실전 코딩 환경"을 최단 경로로 묶어내는 데 모든 것을 걸었습니다.
             </p>
           </div>
@@ -290,10 +290,10 @@ const slidesPart1 = [
             <h3 className="text-green-500 font-bold text-xl mb-4 tracking-widest uppercase">
               Zero Configuration
             </h3>
-            <h2 className="text-5xl font-bold mb-8 text-foreground leading-[1.3] max-w-2xl">
+            <h2 className="text-5xl font-bold mb-8 text-foreground leading-[1.3] max-w-2xl break-keep">
               복잡한 파이썬 환경 세팅? 그냥 웹으로 접속하세요.
             </h2>
-            <div className="flex flex-col gap-6 text-xl text-muted-foreground leading-[1.8] max-w-2xl">
+            <div className="flex flex-col gap-6 text-xl text-muted-foreground leading-[1.8] max-w-2xl break-keep">
               <p>
                 공부 시작하기도 전에 라이브러리 패키지 꼬임이나 환경 변수 에러로 소중한 의지력을 소모하지 마세요.
               </p>
