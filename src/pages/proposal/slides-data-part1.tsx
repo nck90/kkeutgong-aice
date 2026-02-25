@@ -136,7 +136,8 @@ const slidesPart1 = [
                 <h4 className="text-3xl font-black text-foreground">"눈으로만 코드를 읽습니다"</h4>
               </div>
               <p className="text-xl text-muted-foreground leading-[1.8] mt-6 break-keep">
-                수많은 수험생들이 방대한 텍스트북을 눈으로만 읽다가 실질적인 코딩 구현력을 상실합니다.<br />코딩은 손의 근육이 기억해야 합니다.
+                수많은 수험생들이 방대한 텍스트북을 눈으로만 읽다가 실질적인 코딩 구현력을 상실합니다.<br />
+                <b>코딩은 손의 근육이 기억해야 합니다.</b>
               </p>
             </div>
           </div>
@@ -184,13 +185,13 @@ const slidesPart1 = [
           인강 대신 매일 "실전 실습" 타격. 끝공 14일 맞춤 챌린지
         </h2>
         <div className="bg-white p-12 rounded-[2rem] shadow-2xl max-w-4xl w-full mx-auto border-t-[8px] border-t-primary flex flex-col gap-6">
-          <p className="text-2xl font-bold text-muted-foreground">
+          <p className="text-2xl font-bold text-muted-foreground break-keep">
             모니터 앞에서 오랜 시간 인강을 시청한다고 합격하지 않습니다.
           </p>
-          <div className="bg-primary/5 p-6 rounded-2xl">
+          <div className="bg-primary/5 p-6 rounded-2xl break-keep">
             <p className="text-3xl font-black text-primary leading-[1.6]">
-              내 트랙에 맞는 커리큘럼을 하루 단 30분이라도
-              직접 시스템에서 완성해보는 짜릿함.
+              내 트랙에 맞는 커리큘럼을 <b>하루 단 30분</b>이라도<br />
+              <b>직접 시스템에서 완성</b>해보는 짜릿함.
             </p>
           </div>
         </div>

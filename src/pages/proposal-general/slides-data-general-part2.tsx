@@ -151,13 +151,12 @@ const slidesGeneralPart2 = [
                         </h2>
                         <div className="flex flex-col gap-6 text-xl text-muted-foreground leading-[1.8] max-w-2xl">
                             <p>
-                                더 이상 계획을 짜느라 시간을 낭비하지 마세요.<br />
-                                사용자의 목표 트랙과 시험일(D-Day)을 설정하면, 시스템이 알아서
-                                <span className="font-bold text-foreground"> 주간(Weekly) 일정과 일일 개념/실습 미션을 자동 분배</span>합니다.
+                                더 이상 엑셀로 단계를 쪼개며 계획을 짜느라 <b>시간을 낭비하지 마세요.</b><br />
+                                사용자의 목표 트랙과 시험일(D-Day)을 설정하면 시스템이 지시하는 가이드를 그대로 따르기만 하면 됩니다.
                             </p>
                             <div className="bg-primary/5 p-6 rounded-2xl border border-primary/20">
                                 <p className="text-foreground font-bold">
-                                    업로드된 기출문제를 분석하여 가장 시급한 파트부터 타격하는 <span className="text-primary">최적의 패스트트랙 플랜</span>을 생성합니다.
+                                    업로드된 기출문제를 분석하여 가장 시급한 파트부터 타격하는 <br /><span className="text-primary tracking-tight">가장 완벽한 14일 패스트트랙 플랜</span>을 AI가 자동 분배합니다.
                                 </p>
                             </div>
                         </div>
@@ -221,12 +220,12 @@ const slidesGeneralPart2 = [
                         </h2>
                         <div className="flex flex-col gap-6 text-xl text-muted-foreground leading-[1.8] max-w-2xl">
                             <p>
-                                개념을 암기했다면 이제 손이 기억할 차례입니다.<br />
-                                뷰어 옆에 실전 환경과 <b>동일한 Jupyter 터미널 커널</b>이 브라우저에서 즉각 열립니다.
+                                방대하고 무거운 이론서 회독은 끝났습니다. 이제 <b>직접 손이 기억할 차례입니다.</b><br />
+                                요약 개념 뷰어 바로 옆에 <b>실전 웹 기반 Jupyter 터미널 커널</b>이 브라우저에서 즉각 열립니다.
                             </p>
-                            <div className="bg-green-500/10 p-6 rounded-2xl border border-green-500/20 text-green-900 font-bold text-left mt-4">
-                                학습(Textbook) ➔ 실습(Labs) ➔ 테스트(Session)로<br />
-                                끊김없이 이어지는 완전한 AI 러닝 파이프라인.
+                            <div className="bg-green-500/10 p-6 rounded-2xl border border-green-500/20 text-green-900 font-bold text-left mt-4 break-keep">
+                                개념 학습(Textbook) ➔ 코드 실습(Labs) ➔ 메타인지 진단(Diagnostic)으로<br />
+                                <b>끊김없이 이어지는 완전한 AI 러닝 통합 파이프라인.</b>
                             </div>
                         </div>
                     </div>

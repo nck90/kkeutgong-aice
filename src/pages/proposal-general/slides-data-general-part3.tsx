@@ -175,13 +175,13 @@ const slidesGeneralPart3 = [
                             </div>
                             <div className="text-center md:text-left">
                                 <div className="flex flex-col md:flex-row items-center gap-3 mb-2">
-                                    <h3 className="text-2xl font-black text-foreground">AICE 자격증 운영 측과 미팅 완료</h3>
+                                    <h3 className="text-2xl font-black text-foreground">AICE 주관사 사업 제휴 미팅 및 PoC 진행</h3>
                                     <span className="bg-[#00C471]/10 text-[#00C471] text-xs font-bold px-3 py-1 rounded-full">진행 중</span>
                                 </div>
-                                <p className="text-lg text-muted-foreground leading-relaxed">
-                                    AICE 자격증 운영 측과 직접 미팅을 진행했습니다.
-                                    국가공인뿐 아니라 민간 자격증 영역까지 교육 솔루션에 대한 니즈가 있다는 것을
-                                    확인했고, 현재 <span className="font-bold text-foreground">PoC(Proof of Concept)를 논의 중</span>입니다.
+                                <p className="text-lg text-muted-foreground leading-relaxed break-keep">
+                                    AICE 자격증 운영 측과 실무 미팅을 완료했습니다.<br />
+                                    단순 문답형을 넘어선 <b>"실제 코딩 기반의 에듀테크 솔루션"</b>에 대한 강한 니즈를 확인했으며,
+                                    현재 당사 기술력을 검증하는 <span className="font-bold text-foreground">PoC(Proof of Concept) 및 파일럿 도입을 논의 중</span>입니다.
                                 </p>
                             </div>
                         </div>
@@ -197,7 +197,7 @@ const slidesGeneralPart3 = [
                                 ))}
                             </div>
                             <span className="text-sm font-bold text-muted-foreground text-center">
-                                미팅 완료 → PoC 논의 중 → 파일럿 → 본계약
+                                실무진 미팅 완료 → PoC 세부안 논의 중 → 파트너십 파일럿 런칭 → 본계약 체결
                             </span>
                         </div>
                     </div>

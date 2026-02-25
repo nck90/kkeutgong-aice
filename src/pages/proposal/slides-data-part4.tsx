@@ -95,7 +95,7 @@ const slidesPart4 = [
           </div>
 
           <div className="flex flex-col text-primary font-black text-2xl animate-pulse px-4">
-            ➔ 고품질 ➔
+            ➔ 인프라 제공 ➔
           </div>
 
           <div className="flex flex-col items-center flex-1 break-keep">
@@ -127,31 +127,33 @@ const slidesPart4 = [
             <div className="absolute top-0 right-0 bg-primary text-white text-[11px] font-bold px-4 py-1.5 rounded-bl-xl uppercase tracking-widest">
               Current
             </div>
-            <div className="text-primary text-xl font-bold mb-4">Phase 1 (MVP)</div>
-            <h3 className="text-3xl font-black mb-6 text-foreground">현재까지 구현된 4대 핵심 영역</h3>
+            <div className="text-primary text-xl font-bold mb-4">Phase 1 (MVP 구현 완료)</div>
+            <h3 className="text-3xl font-black mb-6 text-foreground break-keep">웹 브라우저 기반 실습 환경 구동</h3>
             <ul className="space-y-4 text-lg text-muted-foreground font-medium break-keep">
-              <li className="flex items-center gap-3"><span className="w-2 h-2 bg-primary rounded-full"></span> 14일 맞춤 스케줄러 (Plan)</li>
-              <li className="flex items-center gap-3"><span className="w-2 h-2 bg-primary rounded-full"></span> AICE 핵심 요약 개념 (Textbook)</li>
-              <li className="flex items-center gap-3"><span className="w-2 h-2 bg-primary rounded-full"></span> 라이브 파이썬 코딩 및 피드백 (Labs)</li>
-              <li className="flex items-center gap-3"><span className="w-2 h-2 bg-primary rounded-full"></span> 메타인지 약점 대시보드 (Diagnostic)</li>
+              <li className="flex items-center gap-3"><span className="w-2 h-2 bg-primary rounded-full"></span> <b>Serverless Jupyter 연동</b>: 1초 내 터미널 환경 세팅</li>
+              <li className="flex items-center gap-3"><span className="w-2 h-2 bg-primary rounded-full"></span> <b>PDF 파싱 기반 커리큘럼화</b>: 기출문제 핵심 문항 추출</li>
+              <li className="flex items-center gap-3"><span className="w-2 h-2 bg-primary rounded-full"></span> <b>라이브 파이썬 코딩 및 피드백 (Labs)</b></li>
+              <li className="flex items-center gap-3"><span className="w-2 h-2 bg-primary rounded-full"></span> 취약점 및 학습 진도율 시각화 대시보드 런칭</li>
             </ul>
           </div>
 
           <div className="bg-white p-10 rounded-3xl border border-border flex-1 border-t-8 border-t-blue-500 shadow-xl transform hover:-translate-y-2 transition-transform">
-            <div className="text-blue-500 text-xl font-bold mb-4">Phase 2 (고도화)</div>
-            <h3 className="text-3xl font-black mb-6 text-foreground break-keep">학습 튜터링 파이프라인</h3>
+            <div className="text-blue-500 text-xl font-bold mb-4">Phase 2 (튜터링 고도화)</div>
+            <h3 className="text-3xl font-black mb-6 text-foreground break-keep">실시간 AI 튜터 & 모의고사 수익화</h3>
             <ul className="space-y-4 text-lg text-muted-foreground font-medium break-keep">
-              <li className="flex items-start gap-3"><span className="w-2 h-2 bg-blue-500 rounded-full mt-2 shrink-0"></span> 실전 AICE CBT 환경과 100% 동일한 통합 모의고사 (Mock Exam)</li>
-              <li className="flex items-start gap-3"><span className="w-2 h-2 bg-blue-500 rounded-full mt-2 shrink-0"></span> 유저의 코드를 실시간으로 읽고 힌트를 제공하는 AI-Tutor 챗봇</li>
+              <li className="flex items-start gap-3"><span className="w-2 h-2 bg-blue-500 rounded-full mt-2 shrink-0"></span> <b>문맥 기반 AI-Tutor</b>: 작성 중인 변수와 문맥을 읽고 힌트 제공 (구독 모델)</li>
+              <li className="flex items-start gap-3"><span className="w-2 h-2 bg-blue-500 rounded-full mt-2 shrink-0"></span> 실전 CBT와 100% 동일한 통합 모의고사 패스 (단건 결제)</li>
+              <li className="flex items-start gap-3"><span className="w-2 h-2 bg-blue-500 rounded-full mt-2 shrink-0"></span> <b>Bandit 알고리즘 기반</b>: 망각 곡선 극복 맞춤 알림 발송</li>
             </ul>
           </div>
 
           <div className="bg-[#111] p-10 rounded-3xl border border-border flex-1 border-t-8 border-t-green-500 shadow-xl transform hover:-translate-y-2 transition-transform text-white break-keep">
-            <div className="text-green-400 text-xl font-bold mb-4">Phase 3 (비전 확장)</div>
-            <h3 className="text-3xl font-black mb-6">IT/SW 자격증 시장 제패</h3>
+            <div className="text-green-400 text-xl font-bold mb-4">Phase 3 (B2B SaaS 전환)</div>
+            <h3 className="text-3xl font-black mb-6">민간/국가 IT 자격증 파이프라인 수평 전개</h3>
             <ul className="space-y-4 text-lg text-gray-400 font-medium break-keep">
-              <li className="flex items-start gap-3"><span className="w-2 h-2 bg-green-400 rounded-full mt-2 shrink-0"></span> 정보처리기사, 빅데이터 분석 기사 등 [실기] 기반 시험 포섭</li>
-              <li className="flex items-start gap-3"><span className="w-2 h-2 bg-green-400 rounded-full mt-2 shrink-0"></span> 합격자와 예비 응시생을 잇는 프리미엄 러닝 커뮤니티</li>
+              <li className="flex items-start gap-3"><span className="w-2 h-2 bg-green-400 rounded-full mt-2 shrink-0"></span> 주관사용 화이트라벨링 B2B 솔루션 및 API 공급</li>
+              <li className="flex items-start gap-3"><span className="w-2 h-2 bg-green-400 rounded-full mt-2 shrink-0"></span> 정보처리기사, ADsP, 빅데이터 분석기사 등 '실무 실습/기출' 라인업 증설</li>
+              <li className="flex items-start gap-3"><span className="w-2 h-2 bg-green-400 rounded-full mt-2 shrink-0"></span> 타사 자격증 플랫폼과의 파트너십 제휴 협력망 확보</li>
             </ul>
           </div>
         </div>

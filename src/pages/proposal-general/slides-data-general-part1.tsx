@@ -56,16 +56,14 @@ const slidesGeneralPart1 = [
                 <div className="max-w-4xl bg-white p-10 rounded-3xl border border-border shadow-xl">
                     <div className="space-y-6 text-xl leading-relaxed text-muted-foreground">
                         <p>
-                            자격증 공부를 시작하려고 하면 무엇부터 해야 할지 몰라 막막해지기 마련입니다.
+                            매번 다짐만 하고 자격증 공부를 시작조차 못 하고 막막해지기 마련입니다.
                         </p>
                         <p>
-                            교재를 사기에는 <span className="font-bold text-foreground">비용이 부담</span>스럽고,
-                            인터넷에서 찾은 자료나 강의는 <span className="font-bold text-foreground">체계가 부족</span>하거나
-                            나에게 맞지 않아 쉽게 손이 가지 않습니다.
+                            수십만 원짜리 인강 결제는 부담스럽고,<br /> 유튜브에서 찾은 무료 강의나 요약본은 내용이 파편화되어 나에게 맞지 않아 작심삼일로 끝납니다.
                         </p>
                         <p className="font-bold text-foreground text-2xl pt-4 border-t border-border">
-                            결국 포기하는 이유는 의지 부족이 아니라,<br />
-                            <span className="text-primary">처음 방향을 잡아 주는 기준과 흐름</span>이 부족하기 때문입니다.
+                            포기하는 이유는 여러분의 의지 부족이 아닙니다.<br />
+                            <span className="text-primary mt-2 inline-block">온전히 나에게 맞춰진 학습 가이드 러너</span>가 없기 때문입니다.
                         </p>
                     </div>
                 </div>
@@ -89,14 +87,13 @@ const slidesGeneralPart1 = [
                 <div className="max-w-4xl w-full space-y-6">
                     <div className="bg-white/5 border border-white/10 backdrop-blur-sm p-8 rounded-3xl">
                         <p className="text-xl text-white/80 leading-relaxed mb-6 text-center">
-                            자료를 올리면 커리큘럼을 짜주고, 문제를 만들어주는 플랫폼.
-                            <br />하지만 <span className="font-bold text-white">100점을 목표</span>로,
-                            <span className="font-bold text-white"> 하루 10시간</span>씩 공부하는 사람이 아니었습니다.
+                            하지만 끝공의 타깃은 <span className="font-bold text-white">100점을 목표</span>로 <span className="font-bold text-white">하루 10시간</span>씩 공부하는 고시생이 아니었습니다.<br />
+                            업무와 학업에 치여 <b>효율적인 단기 합격</b>이 절실한 보통의 사람들이었습니다.
                         </p>
                         <div className="bg-primary/20 border border-primary/30 p-6 rounded-2xl">
                             <p className="text-2xl font-black text-center text-white">
-                                그래서 깨달았습니다.<br />
-                                이 서비스의 <span className="text-primary">타깃</span>과 제 <span className="text-primary">경험</span>이 맞지 않는다는 걸요.
+                                서비스 핵심 가치를 바꿨습니다.<br />
+                                <span className="text-primary">"방대한 지식 전달"</span>에서 <span className="text-primary">"가장 빠른 14일 초단기 합격 가이드"</span>로.
                             </p>
                         </div>
                     </div>

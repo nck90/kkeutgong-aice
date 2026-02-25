@@ -17,51 +17,54 @@ const slidesGeneralPart4 = [
                 </h2>
                 <div className="flex flex-col md:flex-row items-center gap-6 max-w-6xl w-full justify-center">
                     {/* Enterprise */}
-                    <div className="flex-1 bg-[#191F28] p-8 rounded-3xl text-white text-center shadow-xl w-full max-w-xs">
+                    <div className="flex-1 bg-[#191F28] p-8 rounded-3xl text-white text-center shadow-xl w-full max-w-xs break-keep">
                         <div className="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-white/20">
                             <span className="text-3xl font-black">B2B</span>
                         </div>
-                        <h4 className="text-xl font-black mb-2 text-center">자격증 단체</h4>
+                        <h4 className="text-xl font-black mb-2 text-center">자격증 주관사/학원</h4>
                         <p className="text-white/60 text-sm mb-4 leading-relaxed text-center">
-                            자격증을 제작하고<br />교육하는 기관·단체
+                            교육 데이터 확보 및 합격률 제고가 목표인 <br /> 자격/교육 기관
                         </p>
                         <div className="bg-white/10 px-4 py-2 rounded-full text-sm font-bold text-white/80 inline-block">
-                            월 3,000만~5,000만원
+                            화이트라벨 솔루션 납품
                         </div>
                     </div>
 
                     {/* Arrow */}
                     <div className="flex flex-col items-center gap-1 shrink-0">
                         <ArrowRight className="w-8 h-8 text-primary hidden md:block" />
-                        <span className="text-xs text-muted-foreground font-bold">솔루션 제공</span>
+                        <span className="text-xs text-muted-foreground font-bold text-center">학습 솔루션<br />데이터 분석 제공</span>
                     </div>
 
                     {/* 끝공 */}
-                    <div className="flex-1 bg-gradient-to-br from-primary to-[#5F3DC4] p-8 rounded-3xl text-white text-center shadow-2xl shadow-primary/20 transform scale-105 w-full max-w-xs z-10">
+                    <div className="flex-1 bg-gradient-to-br from-primary to-[#5F3DC4] p-8 rounded-3xl text-white text-center shadow-2xl shadow-primary/20 transform scale-105 w-full max-w-xs z-10 break-keep">
                         <div className="w-24 h-24 bg-white/20 backdrop-blur-sm rounded-3xl flex items-center justify-center mx-auto mb-4 border border-white/30">
-                            <span className="text-4xl font-black">끝공</span>
+                            <span className="text-4xl font-black">AI 플랫폼</span>
                         </div>
-                        <h4 className="text-xl font-black mb-2 text-center">AI 자격증 학습 플랫폼</h4>
+                        <h4 className="text-xl font-black mb-2 text-center">끝공 플랫폼</h4>
                         <p className="text-white/70 text-sm leading-relaxed text-center">
-                            자격증 학습에 최적화된<br />올인원 학습 솔루션
+                            <b>AI 실습/문제 자동화</b>를 통한<br />교육 파이프라인 제공
                         </p>
                     </div>
 
                     {/* Arrow */}
                     <div className="flex flex-col items-center gap-1 shrink-0">
                         <ArrowRight className="w-8 h-8 text-primary hidden md:block" />
-                        <span className="text-xs text-muted-foreground font-bold">학습 제공</span>
+                        <span className="text-xs text-muted-foreground font-bold text-center">학습 패스 및<br />AI 튜터링 제공</span>
                     </div>
 
                     {/* User */}
-                    <div className="flex-1 bg-white p-8 rounded-3xl border-2 border-border text-center shadow-xl w-full max-w-xs">
+                    <div className="flex-1 bg-white p-8 rounded-3xl border-2 border-border text-center shadow-xl w-full max-w-xs break-keep">
                         <div className="w-20 h-20 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4 border border-blue-200">
-                            <span className="text-3xl font-black text-blue-500">C</span>
+                            <span className="text-3xl font-black text-blue-500">B2C</span>
                         </div>
-                        <h4 className="text-xl font-black text-foreground mb-2 text-center">유저</h4>
+                        <h4 className="text-xl font-black text-foreground mb-2 text-center">수험생 (개인)</h4>
                         <p className="text-muted-foreground text-sm leading-relaxed text-center">
-                            자격증 학습에 니즈를<br />가지고 있는 타겟
+                            실습 환경 구축 등 허들 없이<br />자격증 취득 목적의 유저
                         </p>
+                        <div className="bg-blue-50 text-blue-600 px-4 py-2 mt-4 rounded-full text-sm font-bold inline-block">
+                            프리미엄 패스 / 구독 결제
+                        </div>
                     </div>
                 </div>
             </div>
@@ -82,41 +85,38 @@ const slidesGeneralPart4 = [
                 </h2>
                 <div className="flex flex-col lg:flex-row gap-6 max-w-7xl mx-auto w-full justify-center">
                     {/* Phase 1 */}
-                    <div className="bg-white p-8 rounded-3xl border-2 border-primary shadow-xl flex-1 relative overflow-hidden text-center md:text-left">
+                    <div className="bg-white p-8 rounded-3xl border-2 border-primary shadow-xl flex-1 relative overflow-hidden text-center md:text-left break-keep">
                         <div className="absolute top-0 right-0 bg-primary text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg">
-                            Current
+                            MVP
                         </div>
                         <div className="text-primary text-lg font-bold mb-2 text-center md:text-left">Phase 1</div>
-                        <h3 className="text-2xl font-black mb-4 text-center md:text-left">핵심 학습 구조 자동화</h3>
-                        <ul className="list-disc pl-5 text-muted-foreground font-medium space-y-2 text-left">
-                            <li>기출문제 PDF 기반 커리큘럼 자동 생성</li>
-                            <li>핵심 개념 자동 추출 및 요약</li>
-                            <li>학습 데이터 시각화 대시보드</li>
-                            <li>웹 버전 구현 및 서비스 런칭</li>
+                        <h3 className="text-2xl font-black mb-4 text-center md:text-left">기출문제 기반 클라우드 실습 환경 (현재)</h3>
+                        <ul className="list-disc pl-5 text-muted-foreground font-medium space-y-2 text-left leading-relaxed">
+                            <li><span className="font-bold text-foreground">브라우저 내 1초 구동:</span> 별도 설치가 없는 통합 Jupyter Web IDE 구현</li>
+                            <li><span className="font-bold text-foreground">자동 커리큘럼화:</span> 업로드된 기출문제 PDF에서 핵심 문항 및 요약 자동 추출</li>
+                            <li>메타인지 학습 데이터 수치화 대시보드 런칭</li>
                         </ul>
                     </div>
 
                     {/* Phase 2 */}
-                    <div className="bg-white p-8 rounded-3xl border border-border flex-1 border-t-4 border-t-blue-500 shadow-md text-center md:text-left">
+                    <div className="bg-white p-8 rounded-3xl border border-border flex-1 border-t-4 border-t-blue-500 shadow-md text-center md:text-left break-keep">
                         <div className="text-blue-500 text-lg font-bold mb-2 text-center md:text-left">Phase 2</div>
-                        <h3 className="text-2xl font-black mb-4 text-center md:text-left">AI 시스템 고도화</h3>
-                        <ul className="list-disc pl-5 text-muted-foreground font-medium space-y-2 text-left">
-                            <li>AI 튜터 챗봇 연동</li>
-                            <li>Bandit 알고리즘 기반 맞춤 알림</li>
-                            <li>실전 모의고사 환경 구축</li>
-                            <li>학습 패턴 분석 강화</li>
+                        <h3 className="text-2xl font-black mb-4 text-center md:text-left">코딩 AI 튜터 시스템 & 프리미엄 B2C 수익화</h3>
+                        <ul className="list-disc pl-5 text-muted-foreground font-medium space-y-2 text-left leading-relaxed">
+                            <li><span className="font-bold text-foreground">문맥 기반 AI-Tutor 챗봇:</span> 실시간으로 작성 중인 코드 에러 지적 및 힌트 연동 (프리미엄 구독)</li>
+                            <li>Bandit 알고리즘 맞춤 알림 기반 복습 유도</li>
+                            <li>CBT 환경과 100% 동일한 통합 모의고사 라인업 확보 (단건)</li>
                         </ul>
                     </div>
 
                     {/* Phase 3 */}
-                    <div className="bg-white p-8 rounded-3xl border border-border flex-1 border-t-4 border-t-green-500 shadow-md text-center md:text-left">
+                    <div className="bg-white p-8 rounded-3xl border border-border flex-1 border-t-4 border-t-green-500 shadow-md text-center md:text-left break-keep">
                         <div className="text-green-500 text-lg font-bold mb-2 text-center md:text-left">Phase 3</div>
-                        <h3 className="text-2xl font-black mb-4 text-center md:text-left">커뮤니티 & 멘토링</h3>
-                        <ul className="list-disc pl-5 text-muted-foreground font-medium space-y-2 text-left">
-                            <li>합격자 멘토링 프로그램</li>
-                            <li>학습 커뮤니티 구축</li>
-                            <li>민간·국가 자격증 확장</li>
-                            <li>B2B 파트너십 본격화</li>
+                        <h3 className="text-2xl font-black mb-4 text-center md:text-left">B2B SaaS 전환 및 타 IT 자격증 생태계 장악</h3>
+                        <ul className="list-disc pl-5 text-muted-foreground font-medium space-y-2 text-left leading-relaxed">
+                            <li>자격증 주관기관(AICE 등) 파트너십 및 <span className="font-bold text-foreground">화이트라벨링 B2B 솔루션 공급</span></li>
+                            <li>정보처리기사, 빅데이터 분석기사 등 '실무 실습/개발' 기반 자격증 라인업 수평 증설</li>
+                            <li>합격자와 신규 유입 응시생을 잇는 데이터 기반 멘토링 생태계</li>
                         </ul>
                     </div>
                 </div>

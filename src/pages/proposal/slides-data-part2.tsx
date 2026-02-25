@@ -52,14 +52,14 @@ const slidesPart2 = [
             </h2>
             <div className="flex flex-col gap-6 text-xl text-muted-foreground leading-[1.8] max-w-2xl break-keep">
               <p>
-                더 이상 엑셀로 계획을 짜느라 시간을 낭비하지 마세요.
+                더 이상 엑셀로 단계를 쪼개며 계획을 짜느라 <b>시간을 낭비하지 마세요.</b>
               </p>
               <p>
-                사용자의 목표 트랙과 시험일(D-Day)을 설정하면 시스템이 지시하는 대로 따르기만 하면 됩니다.
+                사용자의 목표 트랙과 시험일(D-Day)을 설정하면 시스템이 지시하는 가이드를 그대로 따르기만 하면 됩니다.
               </p>
               <div className="bg-primary/5 p-6 rounded-2xl border border-primary/20">
                 <p className="text-foreground font-bold leading-relaxed">
-                  주간(Weekly) 일정과 일일 개념/실습 미션이 완벽하게 분할된 <span className="text-primary tracking-tight">가장 효율적인 14일 패스트트랙 플랜</span>을 자동 생성합니다.
+                  주간(Weekly) 일정과 일일 개념/실습 미션이 완벽하게 분할된 <br /><span className="text-primary tracking-tight">가장 완벽한 14일 패스트트랙 플랜</span>을 AI가 자동 분배합니다.
                 </p>
               </div>
             </div>
@@ -88,10 +88,10 @@ const slidesPart2 = [
             </h2>
             <div className="flex flex-col gap-6 text-xl text-muted-foreground leading-[1.8] max-w-2xl break-keep">
               <p>
-                수백 페이지의 무거운 파이썬 문법책을 다 볼 필요가 없습니다.<br />실전 시험에서는 쓰는 문법만 씁니다.
+                수백 페이지의 무거운 <b>파이썬 문법책 전권</b>을 다 볼 필요가 없습니다.<br />실전 시험에서는 <b>쓰는 문법만 씁니다.</b>
               </p>
               <p className="leading-relaxed">
-                마치 강사가 옆에서 쪽집게 과외를 해주듯, <br /><b>AICE 시험에 100% 출제되는 Pandas 전처리와 Scikit-Learn 모델링 핵심 개념</b>만 담은 고품질 텍스트북 포맷을 제공합니다.
+                마치 강사가 매 질문 옆에서 쪽집게 과외를 해주듯, <br /><b>AICE 시험에 100% 출제되는 Pandas 전처리와 Scikit-Learn 모델링 핵심 개념</b>만 담은 고품질 텍스트북 포맷을 제공합니다.
               </p>
             </div>
           </div>
