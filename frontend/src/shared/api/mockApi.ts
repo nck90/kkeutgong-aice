@@ -1,6 +1,6 @@
 import { adminLabs, historyEntries, labs, mistakes, planTasks, policyRules, referenceDocs, sessionStepsSeed } from '@/shared/mocks/data'
 import type { Mode, Policy, SessionDetail, SessionReview, SubmitResult } from '@/shared/types/domain'
-import type { SessionStartInput } from './client'
+import type { SessionStartInput, StepSubmitInput } from './client'
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
@@ -98,15 +98,11 @@ export const mockApi = {
   async startSession(input: SessionStartInput) {
     await delay(100)
 
-    if (!input.consent) {
-      throw new Error('CONSENT_REQUIRED')
-    }
-
     const sessionId = `${input.labId}-${Date.now()}`
     const detail: SessionDetail = {
       sessionId,
-      mode: input.mode,
-      policy: input.policy,
+      mode: input.mode || 'Practice',
+      policy: (input.policyId ?? 'ALLOWLIST_ONLY') as Policy,
       timerSec: input.mode === 'Mock' ? 30 * 60 : 0,
       steps: cloneSteps(),
     }
@@ -136,12 +132,12 @@ export const mockApi = {
     return fallback
   },
 
-  async submitStep(sessionId: string, code: string): Promise<SubmitResult> {
+  async submitStep(sessionId: string, stepNo: number, input: StepSubmitInput): Promise<SubmitResult> {
     await delay(100)
 
     const detail = await this.getSession(sessionId)
 
-    if (code.includes('import requests') || code.includes('http://') || code.includes('https://')) {
+    if (input.code.includes('import requests') || input.code.includes('http://') || input.code.includes('https://')) {
       return {
         result: 'FAIL',
         errorCodes: ['POLICY_BLOCKED'],
@@ -173,5 +169,13 @@ export const mockApi = {
     const review = buildReview(detail)
     reviews.set(sessionId, review)
     return review
+  },
+
+  async executeCode(code: string) {
+    await delay(600)
+    if (code.includes('error')) {
+      return { output: '', errorMsg: 'Traceback (most recent call last):\n  File "main.py", line 1, in <module>\nNameError: name \'error\' is not defined', runtimeMs: 120 }
+    }
+    return { output: 'Hello from mock execution!', errorMsg: '', runtimeMs: 80 }
   },
 }

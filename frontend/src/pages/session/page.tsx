@@ -38,6 +38,7 @@ export function SessionPage() {
   const [policyError, setPolicyError] = useState('')
   const [runCount, setRunCount] = useState(0)
   const [lastRunMs, setLastRunMs] = useState(0)
+  const [isExecuting, setIsExecuting] = useState(false)
   const [feedbackHistory, setFeedbackHistory] = useState<FeedbackEntry[]>([])
   const modeForEvent = data?.mode ?? 'Practice+'
 
@@ -48,7 +49,7 @@ export function SessionPage() {
   const activeStep = useMemo(() => openStep ?? steps[0], [openStep, steps])
 
   const submitMutation = useMutation({
-    mutationFn: () => apiClient.submitStep(sessionId, code),
+    mutationFn: () => apiClient.submitStep(sessionId, activeStep?.no ?? 1, { code }),
     onSuccess: (result) => {
       const now = new Date().toLocaleTimeString('ko-KR', { hour12: false })
       if (result.errorCodes.includes('POLICY_BLOCKED')) {
@@ -137,23 +138,35 @@ export function SessionPage() {
     },
   })
 
-  const handleRun = () => {
-    const simulatedMs = Math.max(120, Math.min(1800, Math.round(code.length * 3.2)))
+  const handleRun = async () => {
+    setIsExecuting(true)
     setRunCount((prev) => prev + 1)
-    setLastRunMs(simulatedMs)
     setLogs((prev) => [
       ...prev,
       '[RUN] Executing code in sandbox runtime...',
       `> ${code.split('\n')[0]}...`,
     ])
-    setTimeout(() => {
-      setLogs((prev) => [
-        ...prev,
-        `[OUT] Runtime ${simulatedMs}ms`,
-        '[OUT] DataFrame shape: (100, 5)',
-        '[OUT] Missing values handled',
-      ])
-    }, 650)
+
+    try {
+      const result = await apiClient.executeCode(code)
+      setLastRunMs(result.runtimeMs)
+
+      const newLogs: string[] = []
+      if (result.output) {
+        newLogs.push(...result.output.split('\n').filter(Boolean).map(l => `[OUT] ${l}`))
+      }
+      if (result.errorMsg) {
+        newLogs.push(...result.errorMsg.split('\n').filter(Boolean).map(l => `[ERROR] ${l}`))
+      }
+
+      newLogs.push(`[OUT] Process finished in ${result.runtimeMs}ms`)
+      setLogs(prev => [...prev, ...newLogs])
+    } catch (err: any) {
+      setLastRunMs(0)
+      setLogs(prev => [...prev, `[ERROR] Execution failed: ${err.message}`])
+    } finally {
+      setIsExecuting(false)
+    }
   }
 
   if (!data || !activeStep) {
@@ -174,9 +187,9 @@ export function SessionPage() {
   const missingVars = activeStep.requiredVars.filter((variable) => !assignedVars.includes(variable))
   const variableScore = activeStep.requiredVars.length
     ? Math.max(
-        0,
-        Math.round(((activeStep.requiredVars.length - missingVars.length) / activeStep.requiredVars.length) * 100),
-      )
+      0,
+      Math.round(((activeStep.requiredVars.length - missingVars.length) / activeStep.requiredVars.length) * 100),
+    )
     : 100
   const requiredVars = activeStep.requiredVars.join(', ')
   const instruction = `# Step ${activeStep.no}: ${activeStep.title}\n\n1) \`df\` 전처리 결과를 확인하세요.\n2) 답안 변수(\`${requiredVars}\`)를 정확히 선언하세요.\n3) 코드 실행 후 제출해 채점 결과를 확인하세요.`
@@ -206,7 +219,7 @@ export function SessionPage() {
         feedbackHistory={feedbackHistory.slice(0, 6)}
         onRun={handleRun}
         onSubmit={() => submitMutation.mutate()}
-        isRunning={submitMutation.isPending}
+        isRunning={submitMutation.isPending || isExecuting}
       />
 
       <PolicyBlockedDialog

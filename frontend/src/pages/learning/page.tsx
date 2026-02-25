@@ -7,10 +7,9 @@ import {
     CheckCircle2
 } from 'lucide-react'
 import { Button } from '@/shared/ui/button'
-import { getCourseById } from '@/shared/data/courses'
+import { getChaptersByLevel } from '@/shared/data/curriculum'
+import { useAiceStore } from '@/shared/model/store'
 import { cn } from '@/shared/lib/utils'
-// import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels"
-// import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/shared/ui/resizable"
 
 import { ContentPanel } from '@/widgets/learning/ContentPanel'
 import { CodeEditorPanel } from '@/widgets/learning/CodeEditorPanel'
@@ -20,70 +19,78 @@ import { CodeEditorPanel } from '@/widgets/learning/CodeEditorPanel'
   - Left Sidebar: Navigation
   - Center: Content Panel (Flex 1)
   - Right: Code Editor Panel (Flex 1)
-  
-  Note: ResizablePanelGroup removed due to runtime crashes. Using Flexbox for stable 50/50 split.
 */
 
 export function LearningPage() {
     const { courseId, stepId } = useParams()
-    // Mock logic to find current lesson
-    const course = getCourseById(courseId || '')
-    if (!course) return <div>Course not found</div>
+    const { completedStepIds } = useAiceStore()
 
-    const currentLesson = course.chapters.flatMap(c => c.lessons).find(l => l.id === stepId) || course.chapters[0].lessons[0]
+    // Map existing course IDs to AICE Levels
+    let levelKey: 'JUNIOR' | 'BASIC' | 'ASSOCIATE' = 'ASSOCIATE'
+    if (courseId?.includes('junior')) levelKey = 'JUNIOR'
+    if (courseId?.includes('basic')) levelKey = 'BASIC'
+
+    const chapters = getChaptersByLevel(levelKey)
+    if (chapters.length === 0) return <div>Curriculum not found</div>
+
+    const allSteps = chapters.flatMap(c => c.steps)
+    const currentStep = allSteps.find(s => s.id === stepId) || allSteps[0]
 
     // Navigation Logic
-    const allLessons = course.chapters.flatMap(c => c.lessons)
-    const currentIndex = allLessons.findIndex(l => l.id === currentLesson.id)
-    const prevLesson = allLessons[currentIndex - 1]
-    const nextLesson = allLessons[currentIndex + 1]
+    const currentIndex = allSteps.findIndex(s => s.id === currentStep.id)
+    const prevStep = allSteps[currentIndex - 1]
+    const nextStep = allSteps[currentIndex + 1]
 
     const [sidebarOpen, setSidebarOpen] = useState(true)
+    const courseTitle = `AICE ${levelKey.charAt(0) + levelKey.slice(1).toLowerCase()} 과정`
+
+    // Calculate progression based on completed step IDs
+    const completedCount = allSteps.filter(s => completedStepIds.includes(s.id)).length
+    const progress = Math.round((completedCount / allSteps.length) * 100) || 0
 
     return (
         <div className="flex h-screen w-full bg-[#F5F5F5] overflow-hidden fixed inset-0 z-[100]">
-            {/* 
-        1. Left Sidebar - Dark Theme (Elice Style)
-      */}
+            {/* 1. Left Sidebar - Dark Theme (Elice Style) */}
             <aside className={cn(
                 "bg-[#1A1A1A] h-full flex flex-col transition-all duration-300 border-r border-[#333] shrink-0",
                 sidebarOpen ? "w-[300px]" : "w-0 -ml-[300px]"
             )}>
                 {/* Sidebar Header */}
                 <div className="h-[64px] flex items-center px-5 border-b border-[#333] shrink-0">
-                    <Link to="/" className="text-white/80 hover:text-white mr-3">
+                    <Link to="/report" className="text-white/80 hover:text-white mr-3">
                         <ChevronLeft className="w-5 h-5" />
                     </Link>
-                    <h2 className="text-white font-bold text-sm truncate">{course.title}</h2>
+                    <h2 className="text-white font-bold text-sm truncate">{courseTitle}</h2>
                 </div>
 
                 {/* Lesson List */}
                 <div className="flex-1 overflow-y-auto py-2">
-                    {course.chapters.map((chapter, i) => (
+                    {chapters.map((chapter) => (
                         <div key={chapter.id} className="mb-2">
-                            <div className="px-5 py-3 text-[#888] text-xs font-bold uppercase tracking-wider">
-                                Chapter {i + 1}. {chapter.title}
+                            <div className="px-5 py-3 text-[#888] text-xs font-bold uppercase tracking-wider line-clamp-2">
+                                {chapter.title}
                             </div>
                             <div>
-                                {chapter.lessons.map(lesson => {
-                                    const isActive = lesson.id === currentLesson.id
+                                {chapter.steps.map(step => {
+                                    const isActive = step.id === currentStep.id
+                                    const isCompleted = completedStepIds.includes(step.id)
                                     return (
                                         <Link
-                                            key={lesson.id}
-                                            to={`/course/${course.id}/${lesson.id}`}
+                                            key={step.id}
+                                            to={`/course/${courseId}/${step.id}`}
                                             className={cn(
                                                 "flex items-center gap-3 px-5 py-3 text-sm transition-colors border-l-[3px]",
                                                 isActive
-                                                    ? "bg-[#2A2A2A] text-white border-[#7353EA]" // Active Purline Line
+                                                    ? "bg-[#2A2A2A] text-white border-[#7353EA]"
                                                     : "text-[#AAA] border-transparent hover:bg-[#222] hover:text-white"
                                             )}
                                         >
-                                            {lesson.completed ? (
+                                            {isCompleted ? (
                                                 <CheckCircle2 className="w-4 h-4 text-[#00C471] shrink-0" />
                                             ) : (
                                                 <div className={cn("w-4 h-4 rounded-full border shrink-0", isActive ? "border-[#7353EA]" : "border-[#555]")} />
                                             )}
-                                            <span className="line-clamp-2">{lesson.title}</span>
+                                            <span className="line-clamp-2 leading-tight flex-1">{step.title}</span>
                                         </Link>
                                     )
                                 })}
@@ -94,18 +101,15 @@ export function LearningPage() {
 
                 {/* Sidebar Footer */}
                 <div className="p-4 border-t border-[#333]">
-                    <div className="text-[#666] text-xs mb-2">진행률 {course.progress}%</div>
+                    <div className="text-[#666] text-xs mb-2">진행률 {progress}%</div>
                     <div className="h-1.5 bg-[#333] rounded-full overflow-hidden">
-                        <div className="h-full bg-[#00C471]" style={{ width: `${course.progress}%` }}></div>
+                        <div className="h-full bg-[#00C471]" style={{ width: `${progress}%` }}></div>
                     </div>
                 </div>
             </aside>
 
-            {/* 
-        2. Main Content Area (Flexbox Split)
-      */}
+            {/* 2. Main Content Area */}
             <div className="flex-1 flex flex-col h-full min-w-0">
-                {/* Toggle button */}
                 {!sidebarOpen && (
                     <button
                         onClick={() => setSidebarOpen(true)}
@@ -115,44 +119,23 @@ export function LearningPage() {
                     </button>
                 )}
 
-                {/* Split Layout Container */}
                 <div className="flex-1 flex flex-row overflow-hidden relative">
                     {/* Left Panel: Content */}
-                    <div className="flex-1 flex flex-col min-w-0 border-r border-[#E5E8EB] overflow-hidden bg-white">
-                        <ContentPanel lesson={currentLesson} />
+                    <div className={cn("flex flex-col min-w-0 border-r border-[#E5E8EB] overflow-hidden bg-white",
+                        currentStep.type === 'CODING' ? "flex-1" : "w-full flex-1"
+                    )}>
+                        <ContentPanel step={currentStep} />
                     </div>
 
-                    {/* Right Panel: Code Editor */}
-                    <div className="flex-1 flex flex-col min-w-0 overflow-hidden bg-[#1e1e1e]">
-                        <CodeEditorPanel
-                            language="python"
-                            defaultCode={currentLesson.type === 'practice' ?
-                                `import pandas as pd
-
-# 실습: 데이터프레임 생성
-data = {
-    'name': ['Alice', 'Bob', 'Charlie'],
-    'age': [25, 30, 35],
-    'city': ['Seoul', 'Busan', 'Incheon']
-}
-
-df = pd.DataFrame(data)
-print("Created DataFrame:")
-print(df)
-
-# 여기에 코드를 추가해보세요
-` :
-                                `# 개념 학습: ${currentLesson.title}
-#
-# 이 강의는 이론 중심입니다.
-# 왼쪽의 내용을 꼼꼼히 읽어보세요.
-# 필요한 경우 여기서 간단한 파이썬 코드를 테스트할 수 있습니다.
-
-print("Ready to learn!")
-`
-                            }
-                        />
-                    </div>
+                    {/* Right Panel: Code Editor (Only for Coding/Practice) */}
+                    {currentStep.type === 'CODING' && (
+                        <div className="flex-1 flex flex-col min-w-0 overflow-hidden bg-[#1e1e1e]">
+                            <CodeEditorPanel
+                                language="python"
+                                step={currentStep}
+                            />
+                        </div>
+                    )}
                 </div>
 
                 {/* 3. Footer Navigation Bar */}
@@ -160,11 +143,11 @@ print("Ready to learn!")
                     <Button
                         variant="outline"
                         className="border-[#E5E8EB] text-[#8B95A1] hover:text-[#191F28]"
-                        disabled={!prevLesson}
-                        asChild={!!prevLesson}
+                        disabled={!prevStep}
+                        asChild={!!prevStep}
                     >
-                        {prevLesson ? (
-                            <Link to={`/course/${course.id}/${prevLesson.id}`}>
+                        {prevStep ? (
+                            <Link to={`/course/${courseId}/${prevStep.id}`}>
                                 <ChevronLeft className="w-4 h-4 mr-2" /> 이전 강의
                             </Link>
                         ) : (
@@ -172,15 +155,15 @@ print("Ready to learn!")
                         )}
                     </Button>
                     <div className="text-sm text-[#8B95A1]">
-                        <span className="text-[#191F28] font-bold">{currentIndex + 1}</span> / {allLessons.length}
+                        <span className="text-[#191F28] font-bold">{currentIndex + 1}</span> / {allSteps.length}
                     </div>
                     <Button
                         className="bg-[#7353EA] hover:bg-[#5F3DC4] text-white px-8 h-[44px] text-[15px] font-bold"
-                        disabled={!nextLesson}
-                        asChild={!!nextLesson}
+                        disabled={!nextStep}
+                        asChild={!!nextStep}
                     >
-                        {nextLesson ? (
-                            <Link to={`/course/${course.id}/${nextLesson.id}`}>
+                        {nextStep ? (
+                            <Link to={`/course/${courseId}/${nextStep.id}`}>
                                 다음 강의 <ChevronRight className="w-4 h-4 ml-2" />
                             </Link>
                         ) : (

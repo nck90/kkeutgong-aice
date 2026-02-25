@@ -5,3 +5,4 @@ frontend/coverage
 frontend/playwright-report
 frontend/test-results
 docs.zip
+node_modules

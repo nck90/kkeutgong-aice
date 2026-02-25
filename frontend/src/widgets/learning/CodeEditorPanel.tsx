@@ -1,53 +1,50 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Editor from '@monaco-editor/react'
-import { Play, RotateCcw, TerminalSquare, ChevronUp, ChevronDown } from 'lucide-react'
+import { Play, RotateCcw, TerminalSquare, ChevronUp, ChevronDown, Send } from 'lucide-react'
 import { Button } from '@/shared/ui/button'
 import { cn } from '@/shared/lib/utils'
+import { usePythonRunner } from '@/shared/hooks/usePythonRunner'
+import { useAiceStore } from '@/shared/model/store'
+import type { CurriculumStep } from '@/shared/data/curriculum'
 
 interface CodeEditorPanelProps {
-    defaultCode?: string
+    step: CurriculumStep
     language?: string
 }
 
 export function CodeEditorPanel({
-    defaultCode = "# 여기에 코드를 작성하세요\nprint('Hello, AICE!')",
+    step,
     language = "python"
 }: CodeEditorPanelProps) {
-    const [code, setCode] = useState(defaultCode)
-    const [output, setOutput] = useState<string[]>([])
-    const [isRunning, setIsRunning] = useState(false)
+    const [code, setCode] = useState(step.initialCode || "# 여기에 코드를 작성하세요\nprint('Hello, AICE!')")
     const [terminalOpen, setTerminalOpen] = useState(true)
 
-    const generateMockOutput = (code: string): string[] => {
-        // Simple mock logic based on code content
-        if (code.includes("print")) {
-            const match = code.match(/print\(['"](.+)['"]\)/)
-            if (match) return [match[1]]
-            // If print exists but regex doesn't match perfectly, just return default
-            return ["Hello, AICE! (Mock Output)"]
+    const { isReady, isRunning, output, setOutput, runCode, submitCode } = usePythonRunner()
+    const { markStepCompleted } = useAiceStore()
+
+    // Sync code and state when the steps change
+    useEffect(() => {
+        setCode(step.initialCode || "# 여기에 코드를 작성하세요\nprint('Hello, AICE!')")
+        setOutput([])
+    }, [step.id, step.initialCode, setOutput])
+    const handleRun = async () => {
+        setTerminalOpen(true)
+        try {
+            await runCode(code)
+        } catch (err: any) {
+            setOutput(prev => [...prev, '\n[Error]: ' + err.message])
         }
-        if (code.includes("error")) {
-            return ["Traceback (most recent call last):", "  File \"main.py\", line 1, in <module>", "NameError: name 'error' is not defined"]
-        }
-        return ["Execution complete.", "No output detected."]
     }
 
-    const handleRun = async () => {
-        setIsRunning(true)
-        setOutput([]) // Clear previous output
-        setTerminalOpen(true) // Open terminal if closed
-
-        // Simulate network delay and execution
-        setTimeout(() => {
-            const newOutput = [
-                "> python main.py",
-                ...generateMockOutput(code),
-                "",
-                "Process finished with exit code 0"
-            ]
-            setOutput(newOutput)
-            setIsRunning(false)
-        }, 1200)
+    const handleSubmit = async () => {
+        setTerminalOpen(true)
+        try {
+            await submitCode(code, step.testCode)
+            // On success
+            markStepCompleted(step.id)
+        } catch (err: any) {
+            setOutput(prev => [...prev, '\n[오답]: ' + err.message])
+        }
     }
 
     return (
@@ -63,29 +60,42 @@ export function CodeEditorPanel({
                         variant="ghost"
                         className="h-9 px-3 text-[#A0A0A0] hover:text-white hover:bg-[#333] transition-colors"
                         onClick={() => {
-                            setCode(defaultCode)
+                            setCode(step.initialCode || "")
                             setOutput([])
                         }}
                     >
                         <RotateCcw className="w-4 h-4 mr-1.5" /> 초기화
                     </Button>
-                    {/* Glowing Run Button */}
                     <Button
                         size="sm"
                         className={cn(
                             "h-9 px-5 bg-gradient-to-r from-emerald-500 to-emerald-400 hover:from-emerald-400 hover:to-emerald-300 text-white font-bold shadow-lg shadow-emerald-500/20 border border-emerald-400/30 transition-all duration-300",
-                            isRunning ? "opacity-80 cursor-not-allowed" : "hover:shadow-emerald-500/40 hover:-translate-y-0.5 active:translate-y-0 active:scale-95"
+                            (isRunning || !isReady) ? "opacity-80 cursor-not-allowed" : "hover:shadow-emerald-500/40 hover:-translate-y-0.5 active:translate-y-0 active:scale-95"
                         )}
                         onClick={handleRun}
-                        disabled={isRunning}
+                        disabled={isRunning || !isReady}
                     >
                         {isRunning ? (
                             <span className="flex items-center gap-1.5"><RotateCcw className="w-4 h-4 animate-spin" /> 실행 중...</span>
+                        ) : !isReady ? (
+                            <span className="flex items-center gap-1.5">로딩 중...</span>
                         ) : (
                             <>
                                 <Play className="w-4 h-4 mr-1.5 fill-current" /> 실행
                             </>
                         )}
+                    </Button>
+                    <Button
+                        size="sm"
+                        className={cn(
+                            "h-9 px-5 bg-blue-600 hover:bg-blue-700 text-white font-bold shadow-lg transition-all duration-300",
+                            (isRunning || !isReady) ? "opacity-80 cursor-not-allowed" : "hover:-translate-y-0.5"
+                        )}
+                        onClick={handleSubmit}
+                        disabled={isRunning || !isReady}
+                    >
+                        <Send className="w-4 h-4 mr-1.5" />
+                        제출 후 채점
                     </Button>
                 </div>
             </div>

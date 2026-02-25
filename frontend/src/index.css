@@ -340,8 +340,181 @@ img {
 ::-webkit-scrollbar-thumb:hover {
   background: #CED4DA;
 }
+
 @keyframes float {
-  0% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(5deg); }
-  100% { transform: translateY(0px) rotate(0deg); }
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+/* ── Elice Sidebar ── */
+.elice-sidebar {
+  position: fixed;
+  top: 56px;
+  left: 0;
+  width: 220px;
+  height: calc(100vh - 56px);
+  background: #ffffff;
+  border-right: 1px solid #E5E8EB;
+  overflow-y: auto;
+  z-index: 40;
+}
+
+.elice-sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  color: #4E5968;
+  font-weight: 500;
+  transition: all 0.15s ease;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.elice-sidebar-item:hover {
+  background: #F1F3F5;
+  color: #191F28;
+}
+
+.elice-sidebar-item-active {
+  background: #F3F0FF;
+  color: #7353EA;
+  font-weight: 700;
+}
+
+.elice-sidebar-item-active:hover {
+  background: #EBE5FF;
+  color: #7353EA;
+}
+
+/* ── Elice Course Card ── */
+.elice-course-card {
+  background: #ffffff;
+  border: 1px solid #E5E8EB;
+  border-radius: 12px;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.elice-course-card:hover {
+  border-color: #CED4DA;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* ── Elice Tab ── */
+.elice-tab {
+  padding: 12px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #8B95A1;
+  border-bottom: 2px solid transparent;
+  transition: all 0.15s ease;
+  cursor: pointer;
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+.elice-tab:hover {
+  color: #191F28;
+}
+
+.elice-tab-active {
+  color: #7353EA;
+  border-bottom-color: #7353EA;
+}
+
+/* ── Elice Filter Chip ── */
+.elice-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid #E5E8EB;
+  background: #ffffff;
+  color: #4E5968;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.elice-chip:hover {
+  border-color: #CED4DA;
+}
+
+.elice-chip-active {
+  border-color: #7353EA;
+  color: #7353EA;
+  background: #F3F0FF;
+}
+
+/* ── Elice Accordion ── */
+.elice-accordion {
+  background: #ffffff;
+  border: 1px solid #E5E8EB;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.elice-accordion:hover {
+  border-color: #CED4DA;
+}
+
+.elice-accordion-header {
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.elice-accordion-header:hover {
+  background: #FAFBFC;
+}
+
+/* ── Elice Dark Panel (Course Detail Sidebar) ── */
+.elice-dark-panel {
+  background: #1A1A2E;
+  color: #ffffff;
+}
+
+.elice-dark-panel-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-radius: 6px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 14px;
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+
+.elice-dark-panel-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.elice-dark-panel-item-active {
+  background: rgba(115, 83, 234, 0.2);
+  color: #ffffff;
+  font-weight: 600;
 }

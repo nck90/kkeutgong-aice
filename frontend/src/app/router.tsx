@@ -60,6 +60,7 @@ const HomePage = lazyImport(() => import('@/pages/home'), 'HomePage')
 const ClassLevelPage = lazyImport(() => import('@/pages/class-level/page'), 'ClassLevelPage')
 const CourseDetailPage = lazyImport(() => import('@/pages/course-detail/page'), 'CourseDetailPage')
 const LearningPage = lazyImport(() => import('@/pages/learning/page'), 'LearningPage')
+const AiceRoadmapPage = lazyImport(() => import('@/pages/aice-roadmap/page'), 'AiceRoadmapPage')
 
 const DashboardPage = lazyImport(() => import('@/pages/dashboard/page'), 'DashboardPage')
 const MyClassesPage = lazyImport(() => import('@/pages/my-classes/page'), 'MyClassesPage')
@@ -149,7 +150,8 @@ const CBTExamPage = lazyImport(() => import('@/pages/exam/cbt/page'), 'CBTExamPa
 const ExamResultPage = lazyImport(() => import('@/pages/exam/cbt/result'), 'ExamResultPage')
 const ProposalPage = lazyImport(() => import('@/pages/proposal/page'), 'ProposalPage')
 const ProposalGeneralPage = lazyImport(() => import('@/pages/proposal-general/page'), 'ProposalGeneralPage')
-
+const LoginPage = lazyImport(() => import('@/pages/login/page'), 'default')
+const RegisterPage = lazyImport(() => import('@/pages/register/page'), 'default')
 
 
 export function AppRouter() {
@@ -166,6 +168,7 @@ export function AppRouter() {
           <Route path="/" element={withSuspense(<HomePage />)} />
           <Route path="/home" element={<Navigate to="/" replace />} />
           <Route path="/report" element={withSuspense(<DashboardPage />)} />
+          <Route path="/roadmap" element={withSuspense(<AiceRoadmapPage />)} />
           <Route path="/class/:level" element={withSuspense(<ClassLevelPage />)} />
           <Route path="/course/:courseId" element={withSuspense(<CourseDetailPage />)} />
           <Route path="/course/:courseId/:stepId" element={withSuspense(<LearningPage />)} />
@@ -288,8 +291,9 @@ export function AppRouter() {
             )}
           />
 
-          <Route path="/login" element={withSuspense(<PlaceholderPage title="로그인" />)} />
-          <Route path="/signup" element={withSuspense(<PlaceholderPage title="회원가입" />)} />
+          <Route path="/login" element={withSuspense(<LoginPage />)} />
+          <Route path="/register" element={withSuspense(<RegisterPage />)} />
+          <Route path="/signup" element={<Navigate to="/register" replace />} />
           <Route
             path="/reset-password"
             element={withSuspense(<PlaceholderPage title="비밀번호 재설정" />)}

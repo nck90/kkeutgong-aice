@@ -14,7 +14,7 @@ import type {
 } from '@/shared/types/domain'
 import { apiRequest } from './http-client'
 import { mockApi } from './mockApi'
-import type { ApiClient, SessionStartInput } from './client'
+import type { ApiClient, SessionStartInput, StepSubmitInput } from './client'
 
 type AdminLabRow = {
   id: string
@@ -72,16 +72,6 @@ const toPolicyId = (policy: Policy) => {
   return 'plc_mock'
 }
 
-const parseAnswerVariables = (code: string) => {
-  const answers: Record<string, unknown> = {}
-  const matches = code.match(/\b[a-zA-Z_]\w*(?=\s*=)/g) ?? []
-
-  matches.forEach((name) => {
-    answers[name] = true
-  })
-
-  return answers
-}
 
 const mapLab = (item: AdminLabRow): Lab => ({
   id: item.id,
@@ -202,9 +192,8 @@ export const realApi: ApiClient = {
           method: 'POST',
           body: {
             level: 'Associate',
-            mode: input.mode,
-            policyId: toPolicyId(input.policy),
-            consent: input.consent,
+            mode: input.mode || 'Practice',
+            policyId: input.policyId || 'plc_practice_plus',
           },
         })
         return { sessionId: data.sessionId }
@@ -228,31 +217,42 @@ export const realApi: ApiClient = {
       () => mockApi.getSession(sessionId),
     ),
 
-  submitStep: (sessionId: string, code: string) =>
+  submitStep: (sessionId: string, stepNo: number, input: StepSubmitInput) =>
     withFallback(
       async () => {
-        const session = await realApi.getSession(sessionId)
-        const open = session.steps.find((step) => step.state === 'OPEN') ?? session.steps[0]
-
         const data = await apiRequest<SubmitResponse>(
-          `/api/aice/sessions/${sessionId}/steps/${open.no}/submit`,
+          `/api/aice/sessions/${sessionId}/steps/${stepNo}/submit`,
           {
             method: 'POST',
-            body: {
-              answers: parseAnswerVariables(code),
-              codeSnapshotRef: `snap_${Date.now()}`,
-            },
-          },
+            body: input,
+          }
         )
 
         return {
           result: data.result,
           errorCodes: data.errorCodes ?? [],
-          nextSteps: data.nextSteps ?? session.steps,
+          nextSteps: data.nextSteps ?? [],
         } as SubmitResult
       },
-      () => mockApi.submitStep(sessionId, code),
+      () => mockApi.submitStep(sessionId, stepNo, input),
     ),
+
+  executeCode: (code: string) =>
+    withFallback(
+      async () => {
+        const data = await apiRequest<{ output: string; errorMsg: string; runtimeMs: number }>(
+          '/api/aice/execute',
+          {
+            method: 'POST',
+            body: { code },
+          }
+        )
+        return data
+      },
+      () => mockApi.executeCode(code),
+    ),
+
+  endSession: (sessionId: string) => mockApi.getSessionReview(sessionId),
 
   getSessionReview: (sessionId: string) =>
     withFallback(

@@ -15,11 +15,15 @@ import type {
 import { mockApi } from './mockApi'
 import { realApi } from './realApi'
 
-export type SessionStartInput = {
-  labId: string
-  mode: Mode
-  policy: Policy
-  consent: boolean
+export interface SessionStartInput {
+  labId?: string
+  policyId?: string
+  mode?: string
+  level?: string
+}
+
+export interface StepSubmitInput {
+  code: string
 }
 
 export interface ApiClient {
@@ -34,10 +38,15 @@ export interface ApiClient {
   getHistory(): Promise<HistoryEntry[]>
   getAdminLabs(): Promise<AdminLabSummary[]>
   getPolicyRules(): Promise<PolicyRule[]>
-  startSession(input: SessionStartInput): Promise<{ sessionId: string }>
-  getSession(sessionId: string): Promise<SessionDetail>
-  submitStep(sessionId: string, code: string): Promise<SubmitResult>
-  getSessionReview(sessionId: string): Promise<SessionReview>
+  startSession: (input: SessionStartInput) => Promise<SessionDetail>
+  getSession: (sessionId: string) => Promise<SessionDetail>
+  submitStep: (
+    sessionId: string,
+    stepNo: number,
+    input: StepSubmitInput,
+  ) => Promise<SubmitResult>
+  executeCode: (code: string) => Promise<{ output: string; errorMsg: string; runtimeMs: number }>
+  getSessionReview: (sessionId: string) => Promise<SessionReview>
 }
 
 const API_MODE = (import.meta.env.VITE_API_MODE ?? 'mock').toLowerCase()

@@ -39,18 +39,33 @@ export function DashboardPage() {
               지금 필요한 과제부터 바로 시작하세요.
             </p>
           </div>
-          <div className="flex flex-wrap gap-2">
-            <Button asChild className="rounded-full px-5">
-              <Link to="/labs">
-                실습 코스 탐색
-                <ArrowRight className="ml-1 h-4 w-4" />
+          <div className="flex flex-wrap gap-2 mt-4">
+            <Button asChild className="rounded-full px-5 bg-indigo-600 hover:bg-indigo-700 font-semibold gap-2">
+              <Link to="/course/junior/j1_s01">
+                AICE Junior 시작하기
+                <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
+            <Button asChild className="rounded-full px-5 bg-blue-600 hover:bg-blue-700 font-semibold gap-2">
+              <Link to="/course/basic/b1_s01">
+                AICE Basic 시작하기
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
+            <Button asChild className="rounded-full px-5 bg-teal-600 hover:bg-teal-700 font-semibold gap-2">
+              <Link to="/course/associate/a1_s01">
+                AICE Associate 시작하기
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
+
+            <div className="w-full h-2" /> {/* line break placeholder */}
+
             <Button asChild variant="secondary" className="rounded-full px-5">
-              <Link to="/plan/sprint">스프린트 보드</Link>
+              <Link to="/labs">실습 코스 탐색</Link>
             </Button>
             <Button asChild variant="outline" className="rounded-full px-5">
-              <Link to="/plan">오늘 플랜 보기</Link>
+              <Link to="/plan/sprint">스프린트 보드</Link>
             </Button>
           </div>
         </div>

@@ -11,12 +11,17 @@ interface UserState {
     isAuthenticated: boolean
 
     // Progress Data
-    completedStages: number[] // IDs or indexes of completed curriculum stages
+    completedStages: number[] // Legacy ID array
+    completedStepIds: string[] // Specific curriculum step IDs
+    currentChapterId: string | null
+    currentStepId: string | null
 
     // Actions
     setTrack: (trackId: 'associate' | 'basic' | 'junior') => void
     setExamDate: (date: string) => void
     completeOnboarding: (trackId: 'associate' | 'basic' | 'junior', date: string) => void
+    markStepCompleted: (stepId: string) => void
+    setCurrentProgress: (chapterId: string, stepId: string) => void
     reset: () => void
 }
 
@@ -28,6 +33,9 @@ export const useAiceStore = create<UserState>()(
             isOnboarded: false,
             isAuthenticated: false,
             completedStages: [],
+            completedStepIds: [],
+            currentChapterId: null,
+            currentStepId: null,
 
             setTrack: (trackId) => set({ trackId }),
 
@@ -40,12 +48,26 @@ export const useAiceStore = create<UserState>()(
                 isAuthenticated: true // For now, onboarding implies auth
             }),
 
+            markStepCompleted: (stepId) => set((state) => ({
+                completedStepIds: state.completedStepIds.includes(stepId)
+                    ? state.completedStepIds
+                    : [...state.completedStepIds, stepId]
+            })),
+
+            setCurrentProgress: (chapterId, stepId) => set({
+                currentChapterId: chapterId,
+                currentStepId: stepId
+            }),
+
             reset: () => set({
                 trackId: null,
                 examDate: null,
                 isOnboarded: false,
                 isAuthenticated: false,
-                completedStages: []
+                completedStages: [],
+                completedStepIds: [],
+                currentChapterId: null,
+                currentStepId: null
             }),
         }),
         {

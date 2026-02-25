@@ -1,0 +1,28 @@
+{
+  "name": "kkeutgong-aice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "dev": "concurrently \"npm run dev --prefix frontend\" \"npm run dev --prefix backend\"",
+    "install:all": "npm install && npm install --prefix frontend && npm install --prefix backend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nck90/kkeutgong-aice.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/nck90/kkeutgong-aice/issues"
+  },
+  "homepage": "https://github.com/nck90/kkeutgong-aice#readme",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}

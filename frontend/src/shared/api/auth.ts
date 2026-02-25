@@ -3,12 +3,11 @@ import { apiRequest } from './http-client'
 const AUTH_KEY = 'aice_auth'
 
 type AuthSession = {
-  accessToken: string
-  tokenType: string
-  expiresIn: string
+  token: string
   user: {
     id: string
     email: string
+    name: string
     role: 'USER' | 'ADMIN'
   }
 }
@@ -17,6 +16,16 @@ export async function login(email: string, password: string): Promise<AuthSessio
   const session = await apiRequest<AuthSession>('/api/auth/login', {
     method: 'POST',
     body: { email, password },
+  })
+
+  setAuthSession(session)
+  return session
+}
+
+export async function register(email: string, password: string, name: string): Promise<AuthSession> {
+  const session = await apiRequest<AuthSession>('/api/auth/register', {
+    method: 'POST',
+    body: { email, password, name },
   })
 
   setAuthSession(session)
@@ -39,7 +48,7 @@ export function getAuthSession(): AuthSession | null {
 }
 
 export function getAccessToken(): string | null {
-  return getAuthSession()?.accessToken ?? null
+  return getAuthSession()?.token ?? null
 }
 
 export function clearAuthSession() {
