@@ -134,198 +134,149 @@ const slidesGeneralPart2 = [
         background: 'bg-[#FAFAFA]',
     },
 
-    // 9. Feature 1 — 14일 맞춤 커리큘럼 (설명)
+    // 9. Feature 1 — 14일 맞춤 커리큘럼
     {
-        id: 'g-feat-plan-intro',
+        id: 'g-feat-1',
         content: (
-            <div className="flex flex-col justify-center items-center h-full w-full px-12 md:px-24">
-                <div className="inline-flex items-center gap-2 bg-primary/10 text-primary font-bold text-sm px-4 py-2 rounded-full mb-6">
-                    <Calendar className="w-4 h-4" />
-                    Feature 01. 맞춤형 커리큘럼
+            <div className="flex flex-col justify-center h-full w-full px-12 md:px-24 max-w-[1700px] mx-auto break-keep">
+                <div className="flex flex-col lg:flex-row gap-16 items-center w-full">
+                    {/* Left Text */}
+                    <div className="flex-1 w-full text-left">
+                        <div className="inline-flex items-center gap-2 bg-primary/10 text-primary font-bold text-sm px-4 py-2 rounded-full mb-6">
+                            <Calendar className="w-4 h-4" />
+                            Feature 01. 맞춤형 커리큘럼
+                        </div>
+                        <h2 className="text-4xl md:text-5xl font-bold mb-8 text-foreground leading-[1.3]">
+                            "시험이 코앞인데,<br />무엇부터 해야 하죠?"
+                        </h2>
+                        <div className="flex flex-col gap-6 text-xl text-muted-foreground leading-[1.8] max-w-2xl">
+                            <p>
+                                더 이상 계획을 짜느라 시간을 낭비하지 마세요.<br />
+                                사용자의 목표 트랙과 시험일(D-Day)을 설정하면, 시스템이 알아서
+                                <span className="font-bold text-foreground"> 주간(Weekly) 일정과 일일 개념/실습 미션을 자동 분배</span>합니다.
+                            </p>
+                            <div className="bg-primary/5 p-6 rounded-2xl border border-primary/20">
+                                <p className="text-foreground font-bold">
+                                    업로드된 기출문제를 분석하여 가장 시급한 파트부터 타격하는 <span className="text-primary">최적의 패스트트랙 플랜</span>을 생성합니다.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    {/* Right Visual */}
+                    <div className="flex-[1.2] w-full max-w-3xl">
+                        <ImageMockup src="/pitch-assets/plan.png" alt="Plan Weekly Calendar" className="w-full h-[600px] object-cover object-left-top" />
+                    </div>
                 </div>
-                <h2 className="text-4xl md:text-5xl font-bold mb-8 text-foreground leading-tight text-center">
-                    "시험이 코앞인데, 무엇부터 해야 하죠?"
-                </h2>
-                <p className="text-2xl text-muted-foreground max-w-5xl leading-relaxed mb-8 text-center">
-                    더 이상 계획을 짜느라 시간을 낭비하지 마세요.
-                    사용자의 목표 트랙과 시험일(D-Day)을 설정하면, 시스템이 알아서
-                    <span className="font-bold text-foreground"> 주간(Weekly) 일정과 일일 개념/실습 미션을 자동 분배</span>합니다.
-                </p>
-                <div className="bg-white p-6 rounded-2xl border border-border shadow-md max-w-4xl w-full">
-                    <div className="flex items-center gap-6">
-                        {[
-                            { day: 'Day 1~3', topic: '기본 개념 정리', pct: 15, color: '#7353EA' },
-                            { day: 'Day 4~7', topic: '핵심 이론 학습', pct: 40, color: '#AB9DFE' },
-                            { day: 'Day 8~11', topic: '문제 풀이 집중', pct: 75, color: '#00C471' },
-                            { day: 'Day 12~14', topic: '모의고사 점검', pct: 100, color: '#FFAB00' },
-                        ].map((item, i) => (
-                            <div key={i} className="flex-1 text-center">
-                                <div className="text-xs font-bold text-primary mb-1">{item.day}</div>
-                                <div className="text-sm font-medium text-foreground mb-2">{item.topic}</div>
-                                <div className="w-full bg-muted h-2 rounded-full overflow-hidden">
-                                    <div className="h-full rounded-full" style={{ width: `${item.pct}%`, background: item.color }} />
+            </div>
+        ),
+        background: 'bg-white',
+    },
+
+    // 10. Feature 2 — AI 맞춤 개념장
+    {
+        id: 'g-feat-2',
+        content: (
+            <div className="flex flex-col justify-center h-full w-full px-12 md:px-24 max-w-[1700px] mx-auto break-keep">
+                <div className="flex flex-col lg:flex-row gap-16 items-center w-full">
+                    {/* Left Text */}
+                    <div className="flex-1 w-full text-left">
+                        <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 font-bold text-sm px-4 py-2 rounded-full mb-6">
+                            <BookOpen className="w-4 h-4" />
+                            Feature 02. 맞춤 요약 개념장
+                        </div>
+                        <h2 className="text-4xl md:text-5xl font-bold mb-8 text-foreground leading-[1.3]">
+                            두꺼운 수험서 1회독?<br />시험에 나오는 요약만 봅니다.
+                        </h2>
+                        <div className="flex flex-col gap-6 text-xl text-muted-foreground leading-[1.8] max-w-2xl">
+                            <p>
+                                교재 전체를 다 볼 필요가 없습니다.<br />
+                                마치 강사가 옆에서 쪽집게 과외를 해주듯, <b>PDF 기출문제에서 추출된 핵심 개념</b>만 모바일과 PC 최적화 뷰어로 제공합니다.
+                            </p>
+                        </div>
+                    </div>
+                    {/* Right Visual */}
+                    <div className="flex-[1.2] w-full max-w-3xl">
+                        <ImageMockup src="/pitch-assets/textbook.png" alt="Concept Textbook" className="w-full h-[600px] object-cover object-left-top" />
+                    </div>
+                </div>
+            </div>
+        ),
+        background: 'bg-[#FAFAFA]',
+    },
+
+    // 11. Feature 3 — 인터랙티브 코딩 실습
+    {
+        id: 'g-feat-3',
+        content: (
+            <div className="flex flex-col justify-center h-full w-full px-12 md:px-24 max-w-[1700px] mx-auto break-keep">
+                <div className="flex flex-col lg:flex-row gap-16 items-center w-full">
+                    {/* Left Text */}
+                    <div className="flex-1 w-full text-left">
+                        <div className="inline-flex items-center gap-2 bg-green-50 text-green-600 font-bold text-sm px-4 py-2 rounded-full mb-6">
+                            <Code className="w-4 h-4" />
+                            Feature 03. 인터랙티브 코딩 실습
+                        </div>
+                        <h2 className="text-4xl md:text-5xl font-bold mb-8 text-foreground leading-[1.3]">
+                            눈으로 읽은 코드,<br />그 자리에서 바로 손으로 쳐보세요.
+                        </h2>
+                        <div className="flex flex-col gap-6 text-xl text-muted-foreground leading-[1.8] max-w-2xl">
+                            <p>
+                                개념을 암기했다면 이제 손이 기억할 차례입니다.<br />
+                                뷰어 옆에 실전 환경과 <b>동일한 Jupyter 터미널 커널</b>이 브라우저에서 즉각 열립니다.
+                            </p>
+                            <div className="bg-green-500/10 p-6 rounded-2xl border border-green-500/20 text-green-900 font-bold text-left mt-4">
+                                학습(Textbook) ➔ 실습(Labs) ➔ 테스트(Session)로<br />
+                                끊김없이 이어지는 완전한 AI 러닝 파이프라인.
+                            </div>
+                        </div>
+                    </div>
+                    {/* Right Visual */}
+                    <div className="flex-[1.2] w-full max-w-3xl">
+                        <ImageMockup src="/pitch-assets/labs.png" alt="Interactive Coding Labs" className="w-full h-[600px] object-cover object-left-top" />
+                    </div>
+                </div>
+            </div>
+        ),
+        background: 'bg-white',
+    },
+
+    // 12. Feature 4 — 약점 진단 & 대시보드
+    {
+        id: 'g-feat-4',
+        content: (
+            <div className="flex flex-col justify-center h-full w-full px-12 md:px-24 max-w-[1700px] mx-auto break-keep">
+                <div className="flex flex-col lg:flex-row gap-16 items-center w-full">
+                    {/* Left Text */}
+                    <div className="flex-1 w-full text-left">
+                        <div className="inline-flex items-center gap-2 bg-amber-50 text-amber-600 font-bold text-sm px-4 py-2 rounded-full mb-6">
+                            <BrainCircuit className="w-4 h-4" />
+                            Feature 04. 약점 진단 & 대시보드
+                        </div>
+                        <h2 className="text-4xl md:text-5xl font-bold mb-8 text-foreground leading-[1.3]">
+                            "내 실력이 어느 정도인지<br />데이터로 객관화합니다"
+                        </h2>
+                        <div className="flex flex-col gap-6 text-xl text-muted-foreground leading-[1.8] max-w-2xl">
+                            <p>
+                                학습 시작 전 <b>사전 진단고사(Diagnostic)</b>를 통해 정확한 내 위치를 파악하고,
+                                매일 접속하는 <b>대시보드(Dashboard)</b>에서 진도율과 나의 취약 파트를 수치화된 리포트로 관리받습니다.
+                            </p>
+                            <div className="bg-amber-500/10 p-6 rounded-2xl border border-amber-500/20 text-amber-900 font-bold flex items-start gap-4">
+                                <BarChart3 className="w-8 h-8 text-amber-600 shrink-0" />
+                                <div>
+                                    감으로 하는 공부는 필패합니다.<br />
+                                    코딩 정답률 데이터를 기반으로 커리큘럼을 실시간으로 우회합니다.
                                 </div>
                             </div>
-                        ))}
+                        </div>
                     </div>
-                </div>
-            </div>
-        ),
-        background: 'bg-white',
-    },
-
-    // 10. Feature 1 — 실제 UI (Plan Calendar 스크린샷)
-    {
-        id: 'g-feat-plan-view',
-        content: (
-            <div className="flex flex-col justify-center items-center h-full w-full px-8 max-w-[1400px] mx-auto">
-                <ImageMockup src="/pitch-assets/plan.png" alt="Plan Weekly Calendar — 실제 구현 화면" className="w-full h-[650px]" />
-            </div>
-        ),
-        background: 'bg-[#F3F4F6]',
-    },
-
-    // 11. Feature 2 — AICE 맞춤 개념장 (설명)
-    {
-        id: 'g-feat-textbook-intro',
-        content: (
-            <div className="flex flex-col justify-center items-center h-full w-full px-12 md:px-24">
-                <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 font-bold text-sm px-4 py-2 rounded-full mb-6">
-                    <BookOpen className="w-4 h-4" />
-                    Feature 02. AICE 맞춤 개념장
-                </div>
-                <h2 className="text-4xl md:text-5xl font-bold mb-8 text-foreground leading-tight text-center">
-                    두꺼운 수험서 1회독?<br />시험에 나오는 요약 노트를 봅니다.
-                </h2>
-                <p className="text-2xl text-muted-foreground max-w-5xl leading-relaxed text-center">
-                    수백 페이지의 파이썬 문법책을 다 볼 필요가 없습니다.
-                    마치 강사가 옆에서 쪽집게 과외를 해주듯, <b>AICE 시험에 100% 출제되는
-                        DataFrame, sklearn 핵심 개념</b>들만 모바일/PC 텍스트북 뷰어로 제공합니다.
-                </p>
-            </div>
-        ),
-        background: 'bg-white',
-    },
-
-    // 12. Feature 2 — 실제 UI (Textbook 스크린샷)
-    {
-        id: 'g-feat-textbook-view',
-        content: (
-            <div className="flex flex-col justify-center items-center h-full w-full px-8 max-w-[1400px] mx-auto">
-                <ImageMockup src="/pitch-assets/textbook.png" alt="AICE 핵심 개념장 — 실제 구현 화면" className="w-full h-[650px]" />
-            </div>
-        ),
-        background: 'bg-[#F3F4F6]',
-    },
-
-    // 13. Feature 3 — 인터랙티브 코딩 실습 (설명)
-    {
-        id: 'g-feat-labs-intro',
-        content: (
-            <div className="flex flex-col justify-center items-center h-full w-full px-12 md:px-24">
-                <div className="inline-flex items-center gap-2 bg-green-50 text-green-600 font-bold text-sm px-4 py-2 rounded-full mb-6">
-                    <Code className="w-4 h-4" />
-                    Feature 03. 인터랙티브 Live 코딩 실습
-                </div>
-                <h2 className="text-4xl md:text-5xl font-bold mb-8 text-foreground leading-tight text-center">
-                    눈으로 읽은 코드,<br />
-                    그 자리에서 바로 손으로 쳐보세요.
-                </h2>
-                <p className="text-2xl text-muted-foreground max-w-5xl leading-relaxed mb-8 text-center">
-                    개념을 암기했다면, AICE 실전 CBT 환경과 <b>동일한 Jupyter 커널</b>이 브라우저에서 열립니다.
-                    학습(Textbook) → 실습(Labs) → 테스트(Session)로 끊김없이 이어지는 완전한 러닝 파이프라인.
-                </p>
-                <div className="bg-[#191F28] p-6 rounded-2xl border border-[#333] shadow-2xl max-w-4xl w-full text-white font-mono text-sm flex flex-col text-left">
-                    <div className="flex items-center gap-2 mb-4 border-b border-[#333] pb-3">
-                        <div className="w-3 h-3 rounded-full bg-red-400" />
-                        <div className="w-3 h-3 rounded-full bg-amber-400" />
-                        <div className="w-3 h-3 rounded-full bg-green-400" />
-                        <span className="text-xs text-gray-400 ml-2 font-sans">끝공 Jupyter Sandbox</span>
+                    {/* Right Visual */}
+                    <div className="flex-[1.2] w-full max-w-3xl">
+                        <ImageMockup src="/pitch-assets/diagnostic.png" alt="Diagnostic Dashboard" className="w-full h-[600px] object-cover object-left-top" />
                     </div>
-                    <div className="space-y-1 mb-4">
-                        <div><span className="text-green-400">In [1]:</span> <span className="text-white">import pandas as pd</span></div>
-                        <div><span className="text-green-400">In [2]:</span> <span className="text-white">df = pd.read_csv('aice_data.csv')</span></div>
-                        <div><span className="text-green-400">In [3]:</span> <span className="text-white">df.describe()</span></div>
-                        <div className="text-gray-400">       count   mean    std     min     max</div>
-                        <div className="text-gray-400">score  250.0   72.4    12.3    45.0    98.0</div>
-                    </div>
-                    <div className="bg-primary/20 text-primary-foreground p-3 rounded-lg border border-primary/30 flex items-center gap-2 font-sans text-sm font-bold shadow-[0_0_15px_rgba(115,83,234,0.3)]">
-                        <CheckCircle2 className="w-4 h-4" /> 별도 환경 구축 없이, 브라우저에서 즉시 파이썬 코드 실행
-                    </div>
-                </div>
-            </div>
-        ),
-        background: 'bg-[#FDFDFD]',
-    },
-
-    // 14. Feature 3 — 실제 UI (Labs + Session 스크린샷)
-    {
-        id: 'g-feat-labs-view',
-        content: (
-            <div className="flex flex-col justify-center items-center h-full w-full px-8 max-w-[1400px] mx-auto">
-                <ImageMockup src="/pitch-assets/labs.png" alt="실습 Lab 목록 — 실제 구현 화면" className="w-full h-[650px]" />
-            </div>
-        ),
-        background: 'bg-[#191F28]',
-    },
-
-    // 15. Feature 3 — 실제 코딩 세션 UI
-    {
-        id: 'g-feat-session-view',
-        content: (
-            <div className="flex flex-col justify-center items-center h-full w-full px-8 max-w-[1500px] mx-auto">
-                <ImageMockup src="/pitch-assets/session.png" alt="Live IDE 코딩 세션 — 실제 구현 화면" className="w-full h-[650px]" />
-            </div>
-        ),
-        background: 'bg-[#191F28]',
-    },
-
-    // 16. Feature 4 — 메타인지 대시보드 (설명)
-    {
-        id: 'g-feat-dashboard-intro',
-        content: (
-            <div className="flex flex-col justify-center items-center h-full w-full px-12 md:px-24">
-                <div className="inline-flex items-center gap-2 bg-amber-50 text-amber-600 font-bold text-sm px-4 py-2 rounded-full mb-6">
-                    <BrainCircuit className="w-4 h-4" />
-                    Feature 04. 메타인지 대시보드 & 약점 진단
-                </div>
-                <h2 className="text-4xl md:text-5xl font-bold mb-8 text-foreground leading-tight text-center">
-                    "내 실력이 어느 정도인지<br />데이터로 객관화합니다"
-                </h2>
-                <div className="bg-white p-8 rounded-3xl border border-border shadow-xl max-w-5xl w-full">
-                    <h4 className="text-2xl font-bold mb-4 flex items-center justify-center gap-3">
-                        <BarChart3 className="w-8 h-8 text-amber-500" /> 감으로 하는 공부는 필패합니다.
-                    </h4>
-                    <p className="text-xl text-muted-foreground leading-relaxed text-center">
-                        학습 시작 전 <b>사전 진단고사(Diagnostic)</b>를 통해 정확한 내 위치를 파악하고,
-                        매일 로그인하는 <b>대시보드(Dashboard)</b>에서 진도율과 나의 취약 파트(Scikit-Learn 등)를 수치화된 그래프로 관리받습니다.
-                    </p>
                 </div>
             </div>
         ),
         background: 'bg-[#FAFAFA]',
-    },
-
-    // 17. Feature 4 — 진단고사 실제 UI
-    {
-        id: 'g-feat-diagnostic-view',
-        content: (
-            <div className="flex flex-col justify-center items-center h-full w-full px-8 max-w-[1400px] mx-auto bg-[#FAFAFA]">
-                <ImageMockup src="/pitch-assets/diagnostic.png" alt="진단고사 — 실제 구현 화면" className="w-full h-[650px] border-[#333]" />
-            </div>
-        ),
-        background: 'bg-[#FAFAFA]',
-    },
-
-    // 18. Feature 4 — 대시보드 실제 UI
-    {
-        id: 'g-feat-dashboard-view',
-        content: (
-            <div className="flex flex-col justify-center items-center h-full w-full px-8 max-w-[1400px] mx-auto bg-[#F3F4F6]">
-                <ImageMockup src="/pitch-assets/dashboard-auth.png" alt="학습 대시보드 — 실제 구현 화면" className="w-full h-[650px]" />
-            </div>
-        ),
-        background: 'bg-[#F3F4F6]',
     },
 
     // 19. Zero Configuration — 끝공의 핵심 기술 우위

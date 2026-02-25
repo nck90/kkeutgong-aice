@@ -53,7 +53,7 @@ const slidesGeneralPart3 = [
     {
         id: 'g-market-trend',
         content: (
-            <div className="flex flex-col justify-center items-center h-full w-full px-12 md:px-24">
+            <div className="flex flex-col justify-center items-center h-full w-full px-12 md:px-24 break-keep">
                 <h2 className="text-4xl md:text-5xl font-black mb-4 text-foreground text-center">
                     민간자격증 등록 현황
                 </h2>
@@ -103,7 +103,7 @@ const slidesGeneralPart3 = [
     {
         id: 'g-competitor',
         content: (
-            <div className="flex flex-col justify-center items-center h-full w-full px-12 md:px-24">
+            <div className="flex flex-col justify-center items-center h-full w-full px-12 md:px-24 break-keep">
                 <h3 className="text-primary font-bold text-xl mb-4 tracking-widest uppercase text-center">
                     Competitive Analysis
                 </h3>
@@ -160,7 +160,7 @@ const slidesGeneralPart3 = [
     {
         id: 'g-progress',
         content: (
-            <div className="flex flex-col justify-center items-center h-full w-full px-12 md:px-24">
+            <div className="flex flex-col justify-center items-center h-full w-full px-12 md:px-24 break-keep">
                 <h3 className="text-[#00C471] font-bold text-xl mb-4 tracking-widest uppercase text-center">
                     Progress
                 </h3>
@@ -211,7 +211,7 @@ const slidesGeneralPart3 = [
     {
         id: 'g-blue-ocean',
         content: (
-            <div className="flex flex-col justify-center items-center h-full w-full px-12 md:px-24 text-center">
+            <div className="flex flex-col justify-center items-center h-full w-full px-12 md:px-24 text-center break-keep">
                 <h2 className="text-4xl md:text-5xl font-bold mb-12 text-foreground">
                     웹 기반 Jupyter 실습 환경이 만드는<br />
                     <span className="text-primary">압도적 기술 해자(Moat)</span>

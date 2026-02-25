@@ -46,7 +46,7 @@ const slidesGeneralPart1 = [
     {
         id: 'g-overview-problem',
         content: (
-            <div className="flex flex-col justify-center items-center h-full w-full px-12 md:px-24">
+            <div className="flex flex-col justify-center items-center h-full w-full px-12 md:px-24 break-keep">
                 <h3 className="text-primary font-bold text-xl mb-4 tracking-widest uppercase text-center">
                     Overview
                 </h3>
@@ -78,7 +78,7 @@ const slidesGeneralPart1 = [
     {
         id: 'g-overview-pivot',
         content: (
-            <div className="flex flex-col justify-center items-center h-full w-full px-12 md:px-24 bg-[#191F28] text-white">
+            <div className="flex flex-col justify-center items-center h-full w-full px-12 md:px-24 bg-[#191F28] text-white break-keep">
                 <h3 className="text-primary font-bold text-xl mb-4 tracking-widest uppercase text-center">
                     The Pivot
                 </h3>
@@ -110,7 +110,7 @@ const slidesGeneralPart1 = [
     {
         id: 'g-bg-passrate',
         content: (
-            <div className="flex flex-col justify-center items-center h-full w-full px-12 md:px-24">
+            <div className="flex flex-col justify-center items-center h-full w-full px-12 md:px-24 break-keep">
                 <h3 className="text-destructive font-bold text-xl mb-4 tracking-widest uppercase text-center">
                     Background
                 </h3>
@@ -162,12 +162,13 @@ const slidesGeneralPart1 = [
     {
         id: 'g-bg-employment',
         content: (
-            <div className="flex flex-col justify-center items-center h-full w-full px-12 md:px-24">
+            <div className="flex flex-col justify-center items-center h-full w-full px-12 md:px-24 break-keep">
                 <h3 className="text-success font-bold text-xl mb-4 tracking-widest uppercase text-center">
                     Employment Impact
                 </h3>
                 <h2 className="text-4xl md:text-5xl font-black mb-12 text-foreground text-center leading-tight">
-                    자격증이 정말 <span className="text-[#00C471]">취업에 도움</span>이 될까?
+                    자격증이 정말<br />
+                    <span className="text-[#00C471]">취업에 도움</span>이 될까?
                 </h2>
                 <div className="flex flex-col md:flex-row gap-8 max-w-5xl w-full">
                     <div className="flex-1 bg-white p-10 rounded-3xl border border-border shadow-xl text-center">

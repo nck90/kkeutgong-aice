@@ -73,7 +73,7 @@ const slidesGeneralPart4 = [
     {
         id: 'g-vision',
         content: (
-            <div className="flex flex-col justify-center items-center h-full w-full px-12 md:px-24">
+            <div className="flex flex-col justify-center items-center h-full w-full px-12 md:px-24 break-keep">
                 <h3 className="text-primary font-bold text-xl mb-4 tracking-widest uppercase text-center">
                     Vision
                 </h3>
@@ -129,7 +129,7 @@ const slidesGeneralPart4 = [
     {
         id: 'g-team',
         content: (
-            <div className="flex flex-col justify-center items-center h-full w-full px-12 md:px-24 bg-white">
+            <div className="flex flex-col justify-center items-center h-full w-full px-12 md:px-24 bg-white break-keep">
                 <h3 className="text-primary font-bold text-xl mb-4 tracking-widest uppercase text-center">
                     Team
                 </h3>
@@ -161,7 +161,7 @@ const slidesGeneralPart4 = [
     {
         id: 'g-outro',
         content: (
-            <div className="flex flex-col items-center justify-center h-full w-full bg-[#1A1A24] text-white px-4 text-center">
+            <div className="flex flex-col items-center justify-center h-full w-full bg-[#1A1A24] text-white px-4 text-center break-keep">
                 <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
