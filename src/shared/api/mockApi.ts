@@ -101,7 +101,7 @@ export const mockApi = {
     const sessionId = `${input.labId}-${Date.now()}`
     const detail: SessionDetail = {
       sessionId,
-      mode: input.mode || 'Practice',
+      mode: (input.mode || 'Practice') as Mode,
       policy: (input.policyId ?? 'ALLOWLIST_ONLY') as Policy,
       timerSec: input.mode === 'Mock' ? 30 * 60 : 0,
       steps: cloneSteps(),
@@ -132,7 +132,7 @@ export const mockApi = {
     return fallback
   },
 
-  async submitStep(sessionId: string, stepNo: number, input: StepSubmitInput): Promise<SubmitResult> {
+  async submitStep(sessionId: string, _stepNo: number, input: StepSubmitInput): Promise<SubmitResult> {
     await delay(100)
 
     const detail = await this.getSession(sessionId)

@@ -66,11 +66,6 @@ type SubmitResponse = {
   nextSteps?: SessionStep[]
 }
 
-const toPolicyId = (policy: Policy) => {
-  if (policy === 'OPEN') return 'plc_practice'
-  if (policy === 'ALLOWLIST_ONLY') return 'plc_practice_plus'
-  return 'plc_mock'
-}
 
 
 const mapLab = (item: AdminLabRow): Lab => ({
@@ -252,7 +247,6 @@ export const realApi: ApiClient = {
       () => mockApi.executeCode(code),
     ),
 
-  endSession: (sessionId: string) => mockApi.getSessionReview(sessionId),
 
   getSessionReview: (sessionId: string) =>
     withFallback(

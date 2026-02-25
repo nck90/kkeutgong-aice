@@ -6,11 +6,10 @@ describe('mockApi', () => {
     const { sessionId } = await mockApi.startSession({
       labId: 'lab-pipeline-01',
       mode: 'Mock',
-      policy: 'ALLOWLIST_ONLY',
-      consent: true,
+      policyId: 'ALLOWLIST_ONLY',
     })
 
-    const result = await mockApi.submitStep(sessionId, 'import requests\nrequests.get("https://x.com")')
+    const result = await mockApi.submitStep(sessionId, 1, { code: 'import requests\nrequests.get("https://x.com")' })
     expect(result.errorCodes).toContain('POLICY_BLOCKED')
     expect(result.result).toBe('FAIL')
   })
@@ -19,11 +18,10 @@ describe('mockApi', () => {
     const { sessionId } = await mockApi.startSession({
       labId: 'lab-pipeline-01',
       mode: 'Practice+',
-      policy: 'ALLOWLIST_ONLY',
-      consent: true,
+      policyId: 'ALLOWLIST_ONLY',
     })
 
-    const result = await mockApi.submitStep(sessionId, 'answer02 = df.fillna(0)')
+    const result = await mockApi.submitStep(sessionId, 1, { code: 'answer02 = df.fillna(0)' })
     expect(result.result).toBe('PASS')
     expect(result.nextSteps.some((step) => step.state === 'PASS')).toBe(true)
   })

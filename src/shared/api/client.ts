@@ -3,9 +3,7 @@ import type {
   HistoryEntry,
   Lab,
   MistakeItem,
-  Mode,
   PlanTask,
-  Policy,
   PolicyRule,
   ReferenceDoc,
   SessionDetail,
@@ -38,7 +36,7 @@ export interface ApiClient {
   getHistory(): Promise<HistoryEntry[]>
   getAdminLabs(): Promise<AdminLabSummary[]>
   getPolicyRules(): Promise<PolicyRule[]>
-  startSession: (input: SessionStartInput) => Promise<SessionDetail>
+  startSession: (input: SessionStartInput) => Promise<{ sessionId: string }>
   getSession: (sessionId: string) => Promise<SessionDetail>
   submitStep: (
     sessionId: string,
