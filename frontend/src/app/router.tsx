@@ -148,6 +148,7 @@ const AdminAnalyticsPage = lazyImport(
 const CBTExamPage = lazyImport(() => import('@/pages/exam/cbt/page'), 'CBTExamPage')
 const ExamResultPage = lazyImport(() => import('@/pages/exam/cbt/result'), 'ExamResultPage')
 const ProposalPage = lazyImport(() => import('@/pages/proposal/page'), 'ProposalPage')
+const ProposalGeneralPage = lazyImport(() => import('@/pages/proposal-general/page'), 'ProposalGeneralPage')
 
 
 
@@ -159,6 +160,7 @@ export function AppRouter() {
         <Route path="/exam/cbt/:examId/result" element={withSuspense(<ExamResultPage />)} />
 
         <Route path="/proposal" element={withSuspense(<ProposalPage />)} />
+        <Route path="/proposal-general" element={withSuspense(<ProposalGeneralPage />)} />
 
         <Route element={<MainLayout />}>
           <Route path="/" element={withSuspense(<HomePage />)} />
